@@ -1,0 +1,6 @@
+node_modules/
+humsafar.db
+humsafar.db-wal
+humsafar.db-shm
+.env
+.DS_Store
