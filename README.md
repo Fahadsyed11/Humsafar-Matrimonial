@@ -35,6 +35,12 @@ A `render.yaml` file is included for Render users.
 
 A `Procfile` is included for Heroku compatibility.
 
+### GitHub Pages (static demo only)
+
+If you want to serve a static version of the site from GitHub Pages, set Pages source to `main` branch and `/docs` folder.
+
+> This will publish the `docs/` static copy of the app, but backend routes like `/api/*`, sign-up, and login will not work because GitHub Pages cannot run Node.
+
 ## Notes
 
 - `server.js` serves the static `public/` folder and backend API routes.

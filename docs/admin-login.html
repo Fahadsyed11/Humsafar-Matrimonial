@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Humsafar Admin Login — Access the administration panel.">
+    <title>Admin Login — Humsafar</title>
+    <link rel="icon" type="image/png" href="assets/logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/auth.css">
+</head>
+<body class="auth-page">
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="assets/logo.png" alt="Humsafar Logo" class="logo-img">
+                <span>Humsafar</span>
+            </a>
+            <div class="nav-actions">
+                <a href="login.html" class="btn-login">USER LOGIN</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="auth-main">
+        <div class="auth-container">
+            <div class="auth-card" id="admin-login-card">
+                <div class="auth-header">
+                    <div class="admin-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <h1>Admin Portal</h1>
+                    <p>Authorized personnel only</p>
+                </div>
+
+                <form id="admin-login-form" class="auth-form">
+                    <div class="form-group">
+                        <label for="admin-username">Username</label>
+                        <div class="input-wrapper">
+                            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                            <input type="text" id="admin-username" name="username" placeholder="Admin username" required autocomplete="username">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="admin-password">Password</label>
+                        <div class="input-wrapper">
+                            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                            <input type="password" id="admin-password" name="password" placeholder="Admin password" required autocomplete="current-password">
+                            <button type="button" class="toggle-password" data-target="admin-password" aria-label="Toggle password">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-error" id="admin-login-error"></div>
+
+                    <button type="submit" class="btn btn-primary btn-full" id="admin-login-submit">
+                        <span class="btn-text">ACCESS DASHBOARD</span>
+                        <span class="btn-loader" style="display:none;"></span>
+                    </button>
+                </form>
+
+                <div class="auth-footer">
+                    <a href="index.html" class="back-link">← Back to Home</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="auth-bg-deco">
+            <div class="deco-blob deco-blob-1"></div>
+            <div class="deco-blob deco-blob-2"></div>
+        </div>
+    </main>
+
+    <script src="js/admin.js"></script>
+</body>
+</html>
