@@ -6,6 +6,9 @@ const { getDB } = require('./db/database');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Trust proxy headers when deployed behind a load balancer or reverse proxy
+app.set('trust proxy', 1);
+
 // ===== Initialize Database =====
 getDB();
 console.log('📦 Database initialized');
@@ -22,6 +25,7 @@ app.use(session({
     cookie: {
         maxAge: 24 * 60 * 60 * 1000, // 24 hours
         httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
         sameSite: 'lax'
     }
 }));
@@ -63,9 +67,12 @@ app.get('/admin/dashboard', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'admin-dashboard.html'));
 });
 
-// ===== 404 Handler =====
-app.use((req, res) => {
-    res.status(404).sendFile(path.join(__dirname, 'public', 'index.html'));
+// ===== Route Fallback =====
+app.get('*', (req, res) => {
+    if (req.path.startsWith('/api/')) {
+        return res.status(404).json({ error: 'API route not found.' });
+    }
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 // ===== Start Server =====
