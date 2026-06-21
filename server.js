@@ -80,23 +80,30 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// ===== Bootstrap: init DB then start server =====
+// ===== Bootstrap: init DB then optionally start server =====
 (async () => {
     try {
         await getDB();
         console.log('📦 Database initialized');
 
-        app.listen(PORT, () => {
-            console.log(`\n🚀 Humsafar server running at http://localhost:${PORT}`);
-            console.log(`   📄 Home:      http://localhost:${PORT}`);
-            console.log(`   🔐 Login:     http://localhost:${PORT}/login`);
-            console.log(`   📝 Sign Up:   http://localhost:${PORT}/signup`);
-            console.log(`   ⚙️  Admin:     http://localhost:${PORT}/admin`);
-            console.log(`   📋 Terms:     http://localhost:${PORT}/terms\n`);
-        });
+        // In serverless environments (e.g. Vercel) we should not call app.listen().
+        if (require.main === module) {
+            app.listen(PORT, () => {
+                console.log(`\n🚀 Humsafar server running at http://localhost:${PORT}`);
+                console.log(`   📄 Home:      http://localhost:${PORT}`);
+                console.log(`   🔐 Login:     http://localhost:${PORT}/login`);
+                console.log(`   📝 Sign Up:   http://localhost:${PORT}/signup`);
+                console.log(`   ⚙️  Admin:     http://localhost:${PORT}/admin`);
+                console.log(`   📋 Terms:     http://localhost:${PORT}/terms\n`);
+            });
+        }
     } catch (err) {
         console.error('❌ Failed to initialize database:', err);
-        process.exit(1);
+        // In serverless environments, avoid exiting the process; rethrow to fail initialization.
+        throw err;
     }
 })();
+
+// Export the app for serverless wrappers / tests
+module.exports = app;
 

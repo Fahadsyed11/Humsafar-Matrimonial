@@ -1,8 +1,10 @@
 const path = require('path');
 const fs = require('fs');
+const os = require('os');
 const bcrypt = require('bcryptjs');
 
-const DB_PATH = path.join(__dirname, '..', 'humsafar.db');
+// Allow overriding DB path via environment. For serverless deployments use a writable temp dir.
+const DB_PATH = process.env.HUMSAFAR_DB_PATH || (process.env.VERCEL || process.env.SERVERLESS ? path.join(os.tmpdir(), 'humsafar.db') : path.join(__dirname, '..', 'humsafar.db'));
 
 let db = null;          // sql.js Database instance
 let SQL = null;         // sql.js module
