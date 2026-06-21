@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Complete your Humsafar profile to find your perfect match.">
+    <title>Complete Your Profile — Humsafar</title>
+    <link rel="icon" type="image/png" href="/assets/logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/complete-profile.css">
+</head>
+<body class="cp-page">
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">
+                <img src="/assets/logo.png" alt="Humsafar Logo" class="logo-img">
+                <span>Humsafar</span>
+            </a>
+            <div class="nav-actions">
+                <span class="user-greeting" id="nav-greeting"></span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="cp-main">
+        <div class="cp-wrapper">
+
+            <!-- Page Header -->
+            <div class="cp-header">
+                <h1>Complete Your Profile</h1>
+                <p>Help us find your perfect Humsafar by providing your details. A thoughtful profile attracts meaningful connections.</p>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="cp-progress-card">
+                <div class="progress-top">
+                    <span class="progress-label">Profile Completion</span>
+                    <span class="progress-pct" id="progress-pct">0% Complete</span>
+                </div>
+                <div class="progress-bar-wrap">
+                    <div class="progress-bar-fill" id="progress-bar" style="width:0%"></div>
+                </div>
+                <div class="progress-steps">
+                    <div class="ps-step active" id="ps-personal">
+                        <div class="ps-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        </div>
+                        <span>Personal</span>
+                    </div>
+                    <div class="ps-step" id="ps-education">
+                        <div class="ps-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                        </div>
+                        <span>Education</span>
+                    </div>
+                    <div class="ps-step" id="ps-lifestyle">
+                        <div class="ps-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+                        </div>
+                        <span>Lifestyle</span>
+                    </div>
+                    <div class="ps-step" id="ps-family">
+                        <div class="ps-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        </div>
+                        <span>Family</span>
+                    </div>
+                    <div class="ps-step" id="ps-about">
+                        <div class="ps-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                        </div>
+                        <span>About &amp; Photos</span>
+                    </div>
+                </div>
+            </div>
+
+            <form id="profile-form">
+
+                <!-- SECTION 1: Personal Information -->
+                <div class="cp-section" id="section-personal">
+                    <div class="section-header" onclick="toggleSection('personal')">
+                        <div class="section-title-wrap">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                            <span>Personal Information</span>
+                        </div>
+                        <div class="section-right">
+                            <span class="section-check" id="check-personal" style="display:none">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            </span>
+                            <span class="section-chevron" id="chevron-personal">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="section-body" id="body-personal">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="cp-dob">Date of Birth <span class="req">*</span></label>
+                                <input type="date" id="cp-dob" name="dob">
+                            </div>
+                            <div class="form-group">
+                                <label for="cp-gender">Gender <span class="req">*</span></label>
+                                <select id="cp-gender" name="gender">
+                                    <option value="">Select Gender</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="cp-marital">Marital Status <span class="req">*</span></label>
+                                <select id="cp-marital" name="maritalStatus">
+                                    <option value="">Select Status</option>
+                                    <option value="never_married">Never Married</option>
+                                    <option value="divorced">Divorced</option>
+                                    <option value="widowed">Widowed</option>
+                                    <option value="separated">Separated</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="cp-city">City <span class="req">*</span></label>
+                                <input type="text" id="cp-city" name="city" placeholder="e.g. Lahore, Mumbai, Dubai">
+                            </div>
+                            <div class="form-group">
+                                <label for="cp-phone">Phone Number</label>
+                                <input type="tel" id="cp-phone" name="phone" placeholder="+92 300 1234567">
+                            </div>
+                            <div class="form-group">
+                                <label for="cp-height">Height</label>
+                                <select id="cp-height" name="height">
+                                    <option value="">Select Height</option>
+                                    <option value="4'6&quot;">4'6"</option>
+                                    <option value="4'8&quot;">4'8"</option>
+                                    <option value="4'10&quot;">4'10"</option>
+                                    <option value="5'0&quot;">5'0"</option>
+                                    <option value="5'1&quot;">5'1"</option>
+                                    <option value="5'2&quot;">5'2"</option>
+                                    <option value="5'3&quot;">5'3"</option>
+                                    <option value="5'4&quot;">5'4"</option>
+                                    <option value="5'5&quot;">5'5"</option>
+                                    <option value="5'6&quot;">5'6"</option>
+                                    <option value="5'7&quot;">5'7"</option>
+                                    <option value="5'8&quot;">5'8"</option>
+                                    <option value="5'9&quot;">5'9"</option>
+                                    <option value="5'10&quot;">5'10"</option>
+                                    <option value="5'11&quot;">5'11"</option>
+                                    <option value="6'0&quot;">6'0"</option>
+                                    <option value="6'1&quot;">6'1"</option>
+                                    <option value="6'2&quot;">6'2"</option>
+                                    <option value="6'3&quot;">6'3"</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="cp-religion">Religion <span class="req">*</span></label>
+                                <select id="cp-religion" name="religion">
+                                    <option value="">Select Religion</option>
+                                    <option value="islam">Islam</option>
+                                    <option value="hinduism">Hinduism</option>
+                                    <option value="christianity">Christianity</option>
+                                    <option value="sikhism">Sikhism</option>
+                                    <option value="buddhism">Buddhism</option>
+                                    <option value="jainism">Jainism</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="cp-mothertongue">Mother Tongue</label>
+                                <select id="cp-mothertongue" name="motherTongue">
+                                    <option value="">Select Language</option>
+                                    <option value="urdu">Urdu</option>
+                                    <option value="hindi">Hindi</option>
+                                    <option value="punjabi">Punjabi</option>
+                                    <option value="sindhi">Sindhi</option>
+                                    <option value="pashto">Pashto</option>
+                                    <option value="bengali">Bengali</option>
+                                    <option value="tamil">Tamil</option>
+                                    <option value="telugu">Telugu</option>
+                                    <option value="marathi">Marathi</option>
+                                    <option value="gujarati">Gujarati</option>
+                                    <option value="english">English</option>
+                                    <option value="arabic">Arabic</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="cp-caste">Caste / Community</label>
+                                <input type="text" id="cp-caste" name="caste" placeholder="e.g. Rajput, Brahmin, Syed">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECTION 2: Education & Career -->
+                <div class="cp-section" id="section-education">
+                    <div class="section-header" onclick="toggleSection('education')">
+                        <div class="section-title-wrap">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                            <span>Education &amp; Career</span>
+                        </div>
+                        <div class="section-right">
+                            <span class="section-check" id="check-education" style="display:none">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            </span>
+                            <span class="section-chevron" id="chevron-education">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="section-body collapsed" id="body-education">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="cp-education">Highest Education <span class="req">*</span></label>
+                                <select id="cp-education" name="education">
+                                    <option value="">Select Education</option>
+                                    <option value="matric">Matric / O-Level</option>
+                                    <option value="intermediate">Intermediate / A-Level</option>
+                                    <option value="bachelors">Bachelor's Degree</option>
+                                    <option value="masters">Master's Degree</option>
+                                    <option value="phd">PhD / Doctorate</option>
+                                    <option value="mbbs">MBBS / Medical</option>
+                                    <option value="llb">LLB / Law</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="cp-occupation">Occupation <span class="req">*</span></label>
+                                <select id="cp-occupation" name="occupation">
+                                    <option value="">Select Occupation</option>
+                                    <option value="employed_private">Employed — Private Sector</option>
+                                    <option value="employed_govt">Employed — Government</option>
+                                    <option value="self_employed">Self Employed / Business</option>
+                                    <option value="doctor">Doctor / Healthcare</option>
+                                    <option value="engineer">Engineer</option>
+                                    <option value="lawyer">Lawyer</option>
+                                    <option value="teacher">Teacher / Academic</option>
+                                    <option value="student">Student</option>
+                                    <option value="homemaker">Homemaker</option>
+                                    <option value="not_working">Not Working</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="cp-income">Annual Income</label>
+                                <select id="cp-income" name="income">
+                                    <option value="">Select Range</option>
+                                    <option value="below_3lakh">Below 3 Lakh / PKR 0–50k/month</option>
+                                    <option value="3_6lakh">3–6 Lakh / PKR 50–100k/month</option>
+                                    <option value="6_12lakh">6–12 Lakh / PKR 1–2L/month</option>
+                                    <option value="12_25lakh">12–25 Lakh / PKR 2–4L/month</option>
+                                    <option value="25lakh_plus">25 Lakh+ / PKR 4L+/month</option>
+                                    <option value="prefer_not">Prefer not to say</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECTION 3: Physical & Lifestyle -->
+                <div class="cp-section" id="section-lifestyle">
+                    <div class="section-header" onclick="toggleSection('lifestyle')">
+                        <div class="section-title-wrap">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                            <span>Physical &amp; Lifestyle</span>
+                        </div>
+                        <div class="section-right">
+                            <span class="section-check" id="check-lifestyle" style="display:none">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            </span>
+                            <span class="section-chevron" id="chevron-lifestyle">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="section-body collapsed" id="body-lifestyle">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="cp-familytype">Family Type</label>
+                                <select id="cp-familytype" name="familyType">
+                                    <option value="">Select Type</option>
+                                    <option value="joint">Joint Family</option>
+                                    <option value="nuclear">Nuclear Family</option>
+                                    <option value="extended">Extended Family</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- Partner Preferences -->
+                        <div class="sub-section-title">Partner Preferences</div>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="cp-age-min">Partner Age (Min)</label>
+                                <input type="number" id="cp-age-min" name="ageMin" min="18" max="80" placeholder="18">
+                            </div>
+                            <div class="form-group">
+                                <label for="cp-age-max">Partner Age (Max)</label>
+                                <input type="number" id="cp-age-max" name="ageMax" min="18" max="80" placeholder="50">
+                            </div>
+                            <div class="form-group">
+                                <label for="cp-pref-religion">Preferred Religion</label>
+                                <select id="cp-pref-religion" name="prefReligion">
+                                    <option value="">Any Religion</option>
+                                    <option value="islam">Islam</option>
+                                    <option value="hinduism">Hinduism</option>
+                                    <option value="christianity">Christianity</option>
+                                    <option value="sikhism">Sikhism</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="cp-pref-marital">Preferred Marital Status</label>
+                                <select id="cp-pref-marital" name="prefMaritalStatus">
+                                    <option value="">Any Status</option>
+                                    <option value="never_married">Never Married</option>
+                                    <option value="divorced">Divorced</option>
+                                    <option value="widowed">Widowed</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECTION 4: Family Details -->
+                <div class="cp-section" id="section-family">
+                    <div class="section-header" onclick="toggleSection('family')">
+                        <div class="section-title-wrap">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                            <span>Family Details</span>
+                        </div>
+                        <div class="section-right">
+                            <span class="section-check" id="check-family" style="display:none">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            </span>
+                            <span class="section-chevron" id="chevron-family">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="section-body collapsed" id="body-family">
+                        <div class="form-grid">
+                            <div class="form-group form-group-full">
+                                <label>This section is optional. Family details can be added later from your profile dashboard.</label>
+                                <p class="field-hint">Your family background helps in finding the right match for you and your family.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECTION 5: About Yourself & Photos -->
+                <div class="cp-section" id="section-about">
+                    <div class="section-header" onclick="toggleSection('about')">
+                        <div class="section-title-wrap">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                            <span>About Yourself &amp; Photos</span>
+                        </div>
+                        <div class="section-right">
+                            <span class="section-check" id="check-about" style="display:none">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            </span>
+                            <span class="section-chevron" id="chevron-about">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="section-body collapsed" id="body-about">
+                        <div class="form-grid">
+                            <div class="form-group form-group-full">
+                                <label for="cp-about">About Me <span class="req">*</span></label>
+                                <textarea id="cp-about" name="aboutMe" rows="5" placeholder="Tell potential matches about yourself — your values, hobbies, what you're looking for in a life partner..." maxlength="1000"></textarea>
+                                <span class="char-count" id="about-count">0 / 1000</span>
+                            </div>
+                            
+                            <div class="form-group form-group-full">
+                                <label>Profile Photos</label>
+                                <p class="field-hint">Upload photos to personalize your profile. The primary photo is displayed in search results.</p>
+                                <div class="photo-upload-area" id="photo-drag-area">
+                                    <div class="photo-upload-icon">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                            <circle cx="8.5" cy="8.5" r="1.5"/>
+                                            <polyline points="21 15 16 10 5 21"/>
+                                        </svg>
+                                    </div>
+                                    <div class="photo-upload-label">Drag &amp; drop photos here or click to browse</div>
+                                    <div class="photo-upload-hint">Supports JPG, PNG, WEBP up to 5MB</div>
+                                    <input type="file" id="photo-file-input" accept="image/jpeg,image/png,image/webp">
+                                </div>
+                                <div class="photo-uploading" id="upload-status" style="display: none;">
+                                    <span class="btn-loader"></span>
+                                    <span>Uploading photo...</span>
+                                </div>
+                                <div class="photo-grid" id="profile-photo-grid">
+                                    <!-- Uploaded photo thumbnails will render here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Error / Success messages -->
+                <div class="form-error" id="profile-error" style="display:none"></div>
+                <div class="form-success" id="profile-success" style="display:none"></div>
+
+                <!-- Action Buttons -->
+                <div class="cp-actions">
+                    <button type="button" class="btn btn-outline" id="save-draft-btn" onclick="saveProfile(true)">
+                        <span class="btn-text">Save Draft</span>
+                        <span class="btn-loader" style="display:none"></span>
+                    </button>
+                    <button type="submit" class="btn btn-primary" id="create-profile-btn">
+                        <span class="btn-text">Create Profile</span>
+                        <span class="btn-loader" style="display:none"></span>
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </main>
+
+    <script src="/js/complete-profile.js"></script>
+</body>
+</html>

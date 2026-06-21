@@ -77,8 +77,8 @@ async function handleLogin(e) {
         const data = await res.json();
 
         if (res.ok) {
-            // Success — redirect to home
-            window.location.href = '/';
+            // Success — redirect to dashboard
+            window.location.href = '/dashboard';
         } else {
             showError(errorEl, data.error || 'Login failed. Please try again.');
         }
@@ -150,10 +150,10 @@ async function handleSignup(e) {
         const data = await res.json();
 
         if (res.ok) {
-            showSuccess(successEl, data.message || 'Account created! Redirecting to login...');
+            showSuccess(successEl, data.message || 'Account created! Setting up your profile...');
             setTimeout(() => {
-                window.location.href = '/login';
-            }, 1500);
+                window.location.href = data.redirect || '/complete-profile';
+            }, 1000);
         } else {
             showError(errorEl, data.error || 'Signup failed. Please try again.');
         }

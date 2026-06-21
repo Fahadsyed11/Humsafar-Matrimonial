@@ -1,110 +1,3784 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Humsafar Admin Dashboard — Manage users and platform statistics.">
-    <title>Admin Dashboard — Humsafar</title>
+    <meta name="description"
+        content="Humsafar Admin Dashboard — Executive Intelligence, User Management, AI Controls, and Platform Operations.">
+    <title>Admin Dashboard — Humsafar AI</title>
     <link rel="icon" type="image/png" href="/assets/logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/css/styles.css">
-    <link rel="stylesheet" href="/css/auth.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL@20..48,100..700,0..1&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        /* ========================================
+   HUMSAFAR ADMIN — COMPLETE DASHBOARD CSS
+   ======================================== */
+
+        /* === CSS VARIABLES === */
+        :root {
+            --sidebar-bg: #3d0d20;
+            --sidebar-hover: rgba(255, 255, 255, 0.07);
+            --sidebar-active: rgba(212, 168, 83, 0.18);
+            --sidebar-border: rgba(255, 255, 255, 0.08);
+
+            --main-bg: #f5f0ea;
+            --card-bg: #ffffff;
+            --card-bg-warm: linear-gradient(180deg, #ffffff 0%, #fffaf4 100%);
+            --card-border: #e8ddd4;
+            --card-border-hover: #d4c4b5;
+
+            --text-dark: #1a0a0f;
+            --text-med: #5a3d4a;
+            --text-muted: #9a7e8a;
+            --text-sidebar: #f5e6d0;
+            --text-sidebar-muted: rgba(245, 230, 208, 0.55);
+
+            --gold: #d4a853;
+            --gold-light: #e8c992;
+            --gold-glow: rgba(212, 168, 83, 0.15);
+            --maroon: #5c1a2e;
+            --maroon-deep: #3d0d20;
+            --rose: #c4627a;
+            --rose-light: #e8a0b0;
+            --green: #2d8a4e;
+            --green-light: #e6f5ec;
+            --red: #c0392b;
+            --red-light: #fdf0ee;
+            --amber: #d4a017;
+            --amber-light: #fef9e7;
+            --blue: #2980b9;
+
+            --border: #e8ddd4;
+            --border-dark: #d0c4bc;
+
+            --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
+            --shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
+            --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.03);
+
+            --sidebar-width: 240px;
+            --header-height: 58px;
+            --mobile-header-height: 56px;
+
+            --font-display: 'Playfair Display', Georgia, serif;
+            --font-body: 'Inter', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 20px;
+            --radius-pill: 999px;
+
+            --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* === RESET === */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            background: var(--main-bg);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            cursor: pointer;
+            font-family: var(--font-body);
+            border: none;
+            background: none;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        input,
+        select,
+        textarea {
+            font-family: var(--font-body);
+        }
+
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-dark);
+            border-radius: 10px;
+        }
+
+        /* === LAYOUT === */
+        .admin-layout {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* === SIDEBAR === */
+        .admin-sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: var(--sidebar-width);
+            background: var(--sidebar-bg);
+            display: flex;
+            flex-direction: column;
+            z-index: 200;
+            border-right: 1px solid var(--sidebar-border);
+            transition: transform var(--transition);
+            overflow-y: auto;
+            scrollbar-width: none;
+        }
+
+        .admin-sidebar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .sidebar-header {
+            padding: 20px 18px 16px;
+            border-bottom: 1px solid var(--sidebar-border);
+            flex-shrink: 0;
+        }
+
+        .sidebar-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sidebar-logo-img {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1.5px solid rgba(212, 168, 83, 0.4);
+        }
+
+        .sidebar-brand {
+            display: block;
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--text-sidebar);
+            line-height: 1.1;
+        }
+
+        .sidebar-tagline {
+            display: block;
+            font-size: 0.55rem;
+            font-weight: 600;
+            letter-spacing: 2.5px;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+
+        /* Sidebar user card */
+        .sidebar-user-card {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 18px;
+            border-bottom: 1px solid var(--sidebar-border);
+            flex-shrink: 0;
+        }
+
+        .sidebar-avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold), var(--rose));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: white;
+            flex-shrink: 0;
+            border: 2px solid rgba(212, 168, 83, 0.35);
+        }
+
+        .sidebar-user-name {
+            display: block;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-sidebar);
+            line-height: 1.2;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 135px;
+        }
+
+        .sidebar-user-role {
+            display: inline-block;
+            font-size: 0.55rem;
+            font-weight: 600;
+            letter-spacing: 0.8px;
+            padding: 2px 7px;
+            background: rgba(212, 168, 83, 0.15);
+            color: var(--gold);
+            border: 1px solid rgba(212, 168, 83, 0.25);
+            border-radius: 20px;
+            margin-top: 2px;
+        }
+
+        /* Sidebar nav */
+        .sidebar-nav {
+            flex: 1;
+            padding: 10px 0;
+        }
+
+        .sidebar-nav-item {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            padding: 10px 18px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-sidebar-muted);
+            transition: all var(--transition);
+            position: relative;
+            letter-spacing: 0.2px;
+            border-left: 2.5px solid transparent;
+        }
+
+        .sidebar-nav-item:hover {
+            background: var(--sidebar-hover);
+            color: var(--text-sidebar);
+        }
+
+        .sidebar-nav-item.active {
+            background: var(--sidebar-active);
+            color: var(--gold-light);
+            border-left-color: var(--gold);
+            font-weight: 600;
+        }
+
+        .sidebar-nav-item .nav-icon {
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .sidebar-nav-item .nav-badge {
+            margin-left: auto;
+            background: var(--rose);
+            color: white;
+            font-size: 0.58rem;
+            font-weight: 700;
+            padding: 1px 6px;
+            border-radius: 20px;
+            min-width: 18px;
+            text-align: center;
+        }
+
+        .sidebar-nav-item.disabled {
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        /* Sidebar footer */
+        .sidebar-bottom {
+            margin-top: auto;
+            padding: 14px 18px;
+            border-top: 1px solid var(--sidebar-border);
+            flex-shrink: 0;
+        }
+
+        .sidebar-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.72rem;
+            color: var(--text-sidebar-muted);
+            margin-bottom: 8px;
+        }
+
+        .sidebar-status .dot {
+            width: 8px;
+            height: 8px;
+            background: var(--green);
+            border-radius: 50%;
+            box-shadow: 0 0 6px rgba(45, 138, 78, 0.5);
+            animation: pulse-dot 2s infinite;
+        }
+
+        @keyframes pulse-dot {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        .sidebar-version {
+            font-size: 0.65rem;
+            color: var(--text-sidebar-muted);
+            opacity: 0.6;
+        }
+
+        .sidebar-logout-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            width: 100%;
+            padding: 8px 0;
+            color: var(--text-sidebar-muted);
+            font-size: 0.78rem;
+            transition: color var(--transition);
+            margin-top: 6px;
+        }
+
+        .sidebar-logout-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .sidebar-logout-btn:hover {
+            color: var(--rose);
+        }
+
+        /* === MOBILE HEADER === */
+        .admin-mobile-header {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--mobile-header-height);
+            background: var(--maroon-deep);
+            z-index: 201;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            border-bottom: 1px solid var(--sidebar-border);
+        }
+
+        .mobile-menu-btn {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            padding: 4px;
+        }
+
+        .mobile-menu-btn span {
+            width: 20px;
+            height: 2px;
+            background: var(--text-sidebar);
+            border-radius: 2px;
+            display: block;
+            transition: all var(--transition);
+        }
+
+        .mobile-logo {
+            font-family: var(--font-display);
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-sidebar);
+        }
+
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 199;
+            backdrop-filter: blur(2px);
+        }
+
+        .sidebar-overlay.active {
+            display: block;
+        }
+
+        /* === MAIN CONTENT === */
+        .admin-main {
+            margin-left: var(--sidebar-width);
+            flex: 1;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* === PAGES === */
+        .admin-page {
+            display: none;
+            min-height: 100vh;
+        }
+
+        .admin-page.active {
+            display: block;
+            animation: pageFadeIn 0.35s ease;
+        }
+
+        @keyframes pageFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* === TOPBAR === */
+        .page-topbar {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            padding: 24px 32px 20px;
+            background: var(--card-bg);
+            border-bottom: 1px solid var(--border);
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .page-title {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            line-height: 1.2;
+        }
+
+        .page-subtitle {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+            max-width: 480px;
+        }
+
+        .topbar-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .topbar-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 7px 14px;
+            border-radius: var(--radius-pill);
+            background: rgba(61, 13, 32, 0.06);
+            color: var(--text-med);
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .topbar-pill .dot {
+            width: 6px;
+            height: 6px;
+            background: var(--green);
+            border-radius: 50%;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 9px 18px;
+            background: var(--maroon);
+            color: #fff;
+            border-radius: var(--radius-sm);
+            font-size: 0.78rem;
+            font-weight: 600;
+            transition: all var(--transition);
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background: #7a2540;
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 9px 18px;
+            background: var(--card-bg);
+            color: var(--text-dark);
+            border: 1px solid var(--border-dark);
+            border-radius: var(--radius-sm);
+            font-size: 0.78rem;
+            font-weight: 600;
+            transition: all var(--transition);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--maroon);
+            color: var(--maroon);
+        }
+
+        /* === SECTION PADDING === */
+        .section-pad {
+            padding: 24px 32px;
+        }
+
+        /* === STAT CARDS ROW === */
+        .stat-cards-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            padding: 24px 32px;
+        }
+
+        .stat-card {
+            background: var(--card-bg-warm);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            transition: all var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold) 0%, var(--rose) 100%);
+            opacity: 0;
+            transition: opacity var(--transition);
+        }
+
+        .stat-card:hover::before {
+            opacity: 1;
+        }
+
+        .stat-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .stat-card.accent {
+            background: linear-gradient(135deg, var(--maroon-deep) 0%, var(--maroon) 100%);
+            border-color: transparent;
+            color: white;
+        }
+
+        .stat-card.accent .stat-label {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .stat-card.accent .stat-value {
+            color: white;
+        }
+
+        .stat-card.accent .stat-trend {
+            color: var(--gold-light);
+        }
+
+        .stat-icon-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 14px;
+        }
+
+        .stat-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .stat-icon.users {
+            background: rgba(212, 168, 83, 0.12);
+            color: var(--gold);
+        }
+
+        .stat-icon.revenue {
+            background: rgba(196, 98, 122, 0.12);
+            color: var(--rose);
+        }
+
+        .stat-icon.verified {
+            background: rgba(45, 138, 78, 0.12);
+            color: var(--green);
+        }
+
+        .stat-icon.matches {
+            background: rgba(92, 26, 46, 0.12);
+            color: var(--maroon);
+        }
+
+        .stat-trend {
+            font-size: 0.68rem;
+            font-weight: 600;
+            color: var(--green);
+            display: inline-flex;
+            align-items: center;
+            gap: 2px;
+            padding: 3px 8px;
+            background: var(--green-light);
+            border-radius: var(--radius-pill);
+        }
+
+        .stat-trend.down {
+            color: var(--red);
+            background: var(--red-light);
+        }
+
+        .stat-label {
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+
+        .stat-value {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            line-height: 1;
+        }
+
+        .stat-sub {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* === CONTENT GRID === */
+        .content-grid-2 {
+            display: grid;
+            grid-template-columns: 1.6fr 1fr;
+            gap: 20px;
+            padding: 0 32px 24px;
+        }
+
+        .content-grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            padding: 0 32px 24px;
+        }
+
+        /* === CARD === */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-card);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 22px;
+            border-bottom: 1px solid var(--border);
+            gap: 12px;
+        }
+
+        .card-title {
+            font-family: var(--font-display);
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .card-badge {
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: var(--radius-pill);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .card-badge.live {
+            background: var(--green-light);
+            color: var(--green);
+        }
+
+        .card-badge.pending {
+            background: var(--amber-light);
+            color: var(--amber);
+        }
+
+        .card-badge.alert {
+            background: var(--red-light);
+            color: var(--red);
+        }
+
+        .card-body {
+            padding: 20px 22px;
+        }
+
+        .card-footer {
+            padding: 14px 22px;
+            border-top: 1px solid var(--border);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* === CHART CONTAINER === */
+        .chart-container {
+            position: relative;
+            width: 100%;
+        }
+
+        .chart-container canvas {
+            width: 100% !important;
+            height: auto !important;
+        }
+
+        .chart-legend {
+            display: flex;
+            gap: 16px;
+            padding: 12px 0 0;
+            flex-wrap: wrap;
+        }
+
+        .chart-legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.72rem;
+            color: var(--text-med);
+        }
+
+        .chart-legend-item .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 3px;
+        }
+
+        /* === DONUT CHART === */
+        .donut-wrap {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            padding: 8px 0;
+        }
+
+        .donut-canvas-wrap {
+            position: relative;
+            width: 140px;
+            height: 140px;
+            flex-shrink: 0;
+        }
+
+        .donut-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .donut-center-value {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            line-height: 1;
+        }
+
+        .donut-center-label {
+            font-size: 0.6rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .donut-legend {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .donut-legend-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            min-width: 180px;
+        }
+
+        .donut-legend-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.8rem;
+            color: var(--text-med);
+        }
+
+        .donut-legend-label .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 3px;
+        }
+
+        .donut-legend-value {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        /* === TABLE === */
+        .table-wrap {
+            margin: 0 32px 24px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-card);
+        }
+
+        .table-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 22px;
+            border-bottom: 1px solid var(--border);
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .table-header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .table-header h3 {
+            font-family: var(--font-display);
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .table-count {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .table-scroll {
+            overflow-x: auto;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 700px;
+        }
+
+        .data-table th,
+        .data-table td {
+            text-align: left;
+            padding: 14px 20px;
+            border-bottom: 1px solid #f0e7de;
+            font-size: 0.84rem;
+            white-space: nowrap;
+        }
+
+        .data-table th {
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            background: #fcf8f3;
+            position: sticky;
+            top: 0;
+        }
+
+        .data-table tbody tr {
+            transition: background var(--transition);
+        }
+
+        .data-table tbody tr:hover {
+            background: #fffaf5;
+        }
+
+        .data-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* User row styles */
+        .user-cell {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-avatar-sm {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold), var(--rose));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .user-name {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .user-email {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+        }
+
+        /* Badges */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 3px 10px;
+            border-radius: var(--radius-pill);
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+        }
+
+        .badge.verified {
+            background: var(--green-light);
+            color: var(--green);
+        }
+
+        .badge.pending {
+            background: var(--amber-light);
+            color: var(--amber);
+        }
+
+        .badge.incomplete {
+            background: rgba(154, 126, 138, 0.12);
+            color: var(--text-muted);
+        }
+
+        .badge.rejected {
+            background: var(--red-light);
+            color: var(--red);
+        }
+
+        .badge.premium {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            color: #92400e;
+        }
+
+        .badge.free {
+            background: rgba(154, 126, 138, 0.08);
+            color: var(--text-muted);
+        }
+
+        .badge.critical {
+            background: var(--red-light);
+            color: var(--red);
+        }
+
+        .badge.medium {
+            background: var(--amber-light);
+            color: var(--amber);
+        }
+
+        .badge.low {
+            background: rgba(154, 126, 138, 0.1);
+            color: var(--text-muted);
+        }
+
+        /* Table actions */
+        .table-action-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            transition: all var(--transition);
+            font-size: 0.85rem;
+        }
+
+        .table-action-btn:hover {
+            color: var(--maroon);
+            border-color: var(--maroon);
+        }
+
+        .table-action-btn.danger:hover {
+            color: var(--red);
+            border-color: var(--red);
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 16px 22px;
+            border-top: 1px solid var(--border);
+        }
+
+        .page-btn {
+            min-width: 32px;
+            height: 32px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--text-med);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition);
+        }
+
+        .page-btn:hover {
+            border-color: var(--maroon);
+            color: var(--maroon);
+        }
+
+        .page-btn.active {
+            background: var(--maroon);
+            color: white;
+            border-color: var(--maroon);
+        }
+
+        .page-btn:disabled {
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .pagination-info {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            margin: 0 8px;
+        }
+
+        /* === FILTER BAR === */
+        .filter-bar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 32px;
+            background: var(--card-bg);
+            border-bottom: 1px solid var(--border);
+            flex-wrap: wrap;
+        }
+
+        .search-input-wrap {
+            position: relative;
+            flex: 1;
+            min-width: 200px;
+            max-width: 340px;
+        }
+
+        .search-input-wrap .material-symbols-outlined {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 18px;
+            color: var(--text-muted);
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 9px 14px 9px 38px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-size: 0.82rem;
+            color: var(--text-dark);
+            background: var(--card-bg);
+            transition: border-color var(--transition);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--maroon);
+        }
+
+        .search-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .filter-select {
+            padding: 9px 14px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-size: 0.82rem;
+            color: var(--text-dark);
+            background: var(--card-bg);
+            cursor: pointer;
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--maroon);
+        }
+
+        /* === ALERT BANNER === */
+        .alert-banner {
+            margin: 0 32px 20px;
+            padding: 20px 24px;
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .alert-banner.warning {
+            background: linear-gradient(135deg, #8b1a1a 0%, #6b1010 100%);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .alert-banner.success {
+            background: linear-gradient(135deg, var(--green) 0%, #1d6b3a 100%);
+            color: white;
+        }
+
+        .alert-banner-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: var(--radius-md);
+            background: rgba(255, 255, 255, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .alert-banner-content {
+            flex: 1;
+        }
+
+        .alert-banner-label {
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            opacity: 0.7;
+            margin-bottom: 4px;
+        }
+
+        .alert-banner-title {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .alert-banner-text {
+            font-size: 0.82rem;
+            line-height: 1.5;
+            opacity: 0.85;
+        }
+
+        /* === LIVE FEED === */
+        .feed-list {
+            padding: 0;
+        }
+
+        .feed-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 16px 22px;
+            border-bottom: 1px solid #f5ede5;
+            transition: background var(--transition);
+        }
+
+        .feed-item:hover {
+            background: #fffcf8;
+        }
+
+        .feed-item:last-child {
+            border-bottom: none;
+        }
+
+        .feed-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .feed-icon.registration {
+            background: rgba(212, 168, 83, 0.12);
+            color: var(--gold);
+        }
+
+        .feed-icon.match {
+            background: rgba(196, 98, 122, 0.12);
+            color: var(--rose);
+        }
+
+        .feed-icon.alert {
+            background: var(--red-light);
+            color: var(--red);
+        }
+
+        .feed-icon.verification {
+            background: var(--green-light);
+            color: var(--green);
+        }
+
+        .feed-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .feed-title {
+            font-weight: 600;
+            font-size: 0.84rem;
+            color: var(--text-dark);
+            margin-bottom: 2px;
+        }
+
+        .feed-desc {
+            font-size: 0.76rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        .feed-time {
+            font-size: 0.68rem;
+            color: var(--text-muted);
+            flex-shrink: 0;
+            white-space: nowrap;
+        }
+
+        .feed-live {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.68rem;
+            font-weight: 600;
+            color: var(--green);
+        }
+
+        .feed-live .dot {
+            width: 6px;
+            height: 6px;
+            background: var(--green);
+            border-radius: 50%;
+            animation: pulse-dot 2s infinite;
+        }
+
+        /* === SETTINGS GRID === */
+        .settings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+            padding: 0 32px 32px;
+        }
+
+        .setting-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            transition: all var(--transition);
+        }
+
+        .setting-card:hover {
+            box-shadow: var(--shadow-md);
+        }
+
+        .setting-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 10px;
+            border-radius: var(--radius-pill);
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 12px;
+        }
+
+        .setting-status.enabled {
+            background: var(--green-light);
+            color: var(--green);
+        }
+
+        .setting-status.live {
+            background: rgba(212, 168, 83, 0.12);
+            color: var(--gold);
+        }
+
+        .setting-status.queued {
+            background: var(--amber-light);
+            color: var(--amber);
+        }
+
+        .setting-card h3 {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+        }
+
+        .setting-card p {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* === SLIDER CONTROL === */
+        .slider-group {
+            margin-bottom: 20px;
+        }
+
+        .slider-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+
+        .slider-label-text {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .slider-label-sub {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+
+        .slider-label-value {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--maroon);
+        }
+
+        input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 6px;
+            background: var(--border);
+            border-radius: 3px;
+            outline: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--maroon);
+            cursor: pointer;
+            border: 3px solid white;
+            box-shadow: var(--shadow-sm);
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--maroon);
+            cursor: pointer;
+            border: 3px solid white;
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* === BENCHMARK ROW === */
+        .benchmark-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            padding: 0 32px 32px;
+        }
+
+        .benchmark-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-lg);
+            padding: 22px;
+            text-align: center;
+        }
+
+        .benchmark-card .label {
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .benchmark-card .value {
+            font-family: var(--font-display);
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            line-height: 1;
+        }
+
+        .benchmark-card .sub {
+            font-size: 0.7rem;
+            color: var(--green);
+            font-weight: 600;
+            margin-top: 6px;
+        }
+
+        /* === AUDIT QUEUE === */
+        .audit-queue {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .audit-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            background: var(--card-bg);
+            transition: all var(--transition);
+        }
+
+        .audit-item:hover {
+            box-shadow: var(--shadow-sm);
+            border-color: var(--card-border-hover);
+        }
+
+        .audit-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold), var(--rose));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .audit-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .audit-name {
+            font-weight: 600;
+            font-size: 0.84rem;
+            color: var(--text-dark);
+        }
+
+        .audit-meta {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+        }
+
+        .audit-action {
+            padding: 6px 14px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-med);
+            transition: all var(--transition);
+        }
+
+        .audit-action:hover {
+            background: var(--maroon);
+            color: white;
+            border-color: var(--maroon);
+        }
+
+        /* === QUICK GOVERNANCE === */
+        .governance-card {
+            background: var(--maroon-deep);
+            border-radius: var(--radius-lg);
+            padding: 22px;
+            color: white;
+        }
+
+        .governance-card h3 {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--gold-light);
+            margin-bottom: 16px;
+        }
+
+        .governance-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 14px;
+            border-radius: var(--radius-sm);
+            margin-bottom: 6px;
+            transition: background var(--transition);
+            font-size: 0.82rem;
+            color: var(--text-sidebar);
+        }
+
+        .governance-link:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .governance-link .material-symbols-outlined {
+            font-size: 18px;
+            color: var(--gold);
+        }
+
+        /* === SYSTEM INTEGRITY === */
+        .integrity-card {
+            background: var(--red-light);
+            border: 1px solid rgba(192, 57, 43, 0.15);
+            border-radius: var(--radius-lg);
+            padding: 22px;
+        }
+
+        .integrity-card h3 {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .integrity-item {
+            margin-bottom: 14px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid rgba(192, 57, 43, 0.1);
+        }
+
+        .integrity-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .integrity-item h4 {
+            font-size: 0.82rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 4px;
+        }
+
+        .integrity-item h4 .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .integrity-item h4 .dot.amber {
+            background: var(--amber);
+        }
+
+        .integrity-item h4 .dot.red {
+            background: var(--red);
+        }
+
+        .integrity-item p {
+            font-size: 0.76rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        /* === INSIGHT BOX === */
+        .insight-box {
+            padding: 14px 16px;
+            background: #fffaf0;
+            border: 1px solid rgba(212, 168, 83, 0.2);
+            border-radius: var(--radius-md);
+            margin-top: 12px;
+        }
+
+        .insight-label {
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 4px;
+        }
+
+        .insight-text {
+            font-size: 0.78rem;
+            color: var(--text-med);
+            line-height: 1.5;
+            font-style: italic;
+        }
+
+        /* === SIMULATION ENGINE === */
+        .sim-form {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .sim-label {
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 4px;
+        }
+
+        .sim-input {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-size: 0.84rem;
+            color: var(--text-dark);
+        }
+
+        .sim-input:focus {
+            outline: none;
+            border-color: var(--maroon);
+        }
+
+        .sim-swap {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            padding: 4px;
+        }
+
+        .sim-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 20px;
+            background: var(--maroon);
+            color: white;
+            border-radius: var(--radius-sm);
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transition: all var(--transition);
+        }
+
+        .sim-btn:hover {
+            background: #7a2540;
+            transform: translateY(-1px);
+        }
+
+        /* === EFFICIENCY CARD === */
+        .efficiency-card {
+            background: linear-gradient(135deg, var(--maroon-deep), var(--maroon));
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .efficiency-card::after {
+            content: '';
+            position: absolute;
+            right: -30px;
+            bottom: -30px;
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, rgba(212, 168, 83, 0.15), transparent 70%);
+            border-radius: 50%;
+        }
+
+        .efficiency-label {
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+
+        .efficiency-value {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .efficiency-sub {
+            font-size: 0.82rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--gold-light);
+        }
+
+        .efficiency-desc {
+            font-size: 0.76rem;
+            opacity: 0.7;
+            line-height: 1.5;
+        }
+
+        /* === FOOTER === */
+        .admin-footer {
+            padding: 24px 32px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            background: var(--card-bg);
+        }
+
+        .admin-footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .admin-footer-brand span:first-child {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .admin-footer-brand span:last-child {
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            padding-left: 8px;
+            border-left: 1px solid var(--border);
+        }
+
+        .admin-footer-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .admin-footer-links a {
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--text-muted);
+            transition: color var(--transition);
+        }
+
+        .admin-footer-links a:hover {
+            color: var(--maroon);
+        }
+
+        .admin-footer-copy {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            width: 100%;
+        }
+
+        /* ============================
+   RESPONSIVE BREAKPOINTS
+   ============================ */
+
+        @media (max-width: 1280px) {
+            .stat-cards-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .content-grid-2 {
+                grid-template-columns: 1fr;
+            }
+
+            .benchmark-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .admin-mobile-header {
+                display: flex;
+            }
+
+            .admin-sidebar {
+                transform: translateX(-100%);
+            }
+
+            .admin-sidebar.open {
+                transform: translateX(0);
+            }
+
+            .admin-main {
+                margin-left: 0;
+                padding-top: var(--mobile-header-height);
+            }
+
+            .page-topbar {
+                padding: 20px 16px 16px;
+            }
+
+            .stat-cards-row {
+                padding: 16px;
+                gap: 12px;
+            }
+
+            .section-pad {
+                padding: 20px 16px;
+            }
+
+            .content-grid-2,
+            .content-grid-3,
+            .settings-grid,
+            .benchmark-row {
+                padding-left: 16px;
+                padding-right: 16px;
+            }
+
+            .table-wrap {
+                margin-left: 16px;
+                margin-right: 16px;
+            }
+
+            .filter-bar {
+                padding: 12px 16px;
+            }
+
+            .alert-banner {
+                margin-left: 16px;
+                margin-right: 16px;
+            }
+
+            .admin-footer {
+                padding: 20px 16px;
+            }
+
+            .gs-brand-grid {
+                padding-left: 16px !important;
+                padding-right: 16px !important;
+            }
+
+            .gs-rules-grid,
+            .gs-ai-grid {
+                padding-left: 16px !important;
+                padding-right: 16px !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .stat-cards-row {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+
+            .stat-value {
+                font-size: 1.6rem;
+            }
+
+            .content-grid-3 {
+                grid-template-columns: 1fr;
+            }
+
+            .settings-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .benchmark-row {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .page-topbar {
+                flex-direction: column;
+            }
+
+            .topbar-actions {
+                width: 100%;
+            }
+
+            .filter-bar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .search-input-wrap {
+                max-width: 100%;
+            }
+
+            .donut-wrap {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .gs-brand-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            .gs-rules-grid,
+            .gs-ai-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            #page-media-moderation>div:nth-child(3) {
+                grid-template-columns: 1fr !important;
+            }
+
+            .mm-photo-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stat-cards-row {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-card {
+                padding: 16px;
+            }
+
+            .stat-value {
+                font-size: 1.4rem;
+            }
+
+            .benchmark-row {
+                grid-template-columns: 1fr;
+            }
+
+            .page-title {
+                font-size: 1.25rem;
+            }
+
+            .pagination {
+                gap: 4px;
+            }
+
+            .page-btn {
+                min-width: 28px;
+                height: 28px;
+                font-size: 0.72rem;
+            }
+
+            .table-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .admin-footer {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .admin-footer-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .mm-photo-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            .mm-tab {
+                font-size: 0.72rem !important;
+                padding: 10px 10px !important;
+            }
+        }
+
+        /* === TOGGLE SWITCH === */
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 44px;
+            height: 24px;
+            flex-shrink: 0;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--border-dark);
+            border-radius: 24px;
+            transition: var(--transition);
+        }
+
+        .toggle-slider::before {
+            content: '';
+            position: absolute;
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background: white;
+            border-radius: 50%;
+            transition: var(--transition);
+            box-shadow: var(--shadow-xs);
+        }
+
+        .toggle-switch input:checked+.toggle-slider {
+            background: var(--maroon);
+        }
+
+        .toggle-switch input:checked+.toggle-slider::before {
+            transform: translateX(20px);
+        }
+
+        /* === MEDIA MODERATION TABS === */
+        .mm-tab {
+            padding: 12px 18px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            border-bottom: 2px solid transparent;
+            transition: all var(--transition);
+            background: none;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .mm-tab:hover {
+            color: var(--text-dark);
+        }
+
+        .mm-tab.active {
+            color: var(--maroon);
+            border-bottom-color: var(--maroon);
+        }
+
+        /* === MEDIA MODERATION PHOTO GRID === */
+        .mm-photo-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .mm-photo-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: box-shadow var(--transition);
+        }
+
+        .mm-photo-card:hover {
+            box-shadow: var(--shadow-md);
+        }
+
+        .mm-photo-img-wrap {
+            position: relative;
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135deg, var(--maroon-deep) 0%, var(--rose) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .mm-photo-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 0.58rem;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: var(--radius-pill);
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+        }
+
+        .mm-photo-badge.flagged {
+            background: var(--red);
+            color: white;
+        }
+
+        .mm-photo-badge.pending {
+            background: var(--green);
+            color: white;
+        }
+
+        .mm-photo-badge.reported {
+            background: var(--amber);
+            color: var(--text-dark);
+        }
+
+        .mm-photo-id {
+            position: absolute;
+            bottom: 8px;
+            left: 10px;
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            color: rgba(255, 255, 255, 0.7);
+            background: rgba(0, 0, 0, 0.4);
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .mm-photo-zoom {
+            position: absolute;
+            bottom: 8px;
+            right: 10px;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background var(--transition);
+        }
+
+        .mm-photo-zoom:hover {
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        .mm-photo-body {
+            padding: 14px 16px;
+        }
+
+        .mm-photo-name {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .mm-photo-score {
+            display: inline-block;
+            font-size: 0.6rem;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: var(--radius-pill);
+            margin-left: 6px;
+            vertical-align: middle;
+        }
+
+        .mm-photo-score.safe {
+            background: var(--green-light);
+            color: var(--green);
+        }
+
+        .mm-photo-score.warn {
+            background: var(--amber-light);
+            color: var(--amber);
+        }
+
+        .mm-photo-score.danger {
+            background: var(--red-light);
+            color: var(--red);
+        }
+
+        .mm-photo-meta {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            margin: 4px 0 8px;
+        }
+
+        .mm-photo-flag {
+            font-size: 0.72rem;
+            font-style: italic;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .mm-photo-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .mm-action-btn {
+            flex: 1;
+            padding: 8px 10px;
+            border-radius: var(--radius-sm);
+            font-size: 0.72rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+            transition: all var(--transition);
+            border: 1px solid var(--border);
+            color: var(--text-med);
+            background: var(--card-bg);
+        }
+
+        .mm-action-btn:hover {
+            border-color: var(--maroon);
+            color: var(--maroon);
+        }
+
+        .mm-action-btn.approve {
+            background: var(--maroon);
+            color: white;
+            border-color: var(--maroon);
+        }
+
+        .mm-action-btn.approve:hover {
+            background: var(--maroon-deep);
+        }
+
+        .mm-action-btn.remove {
+            background: var(--red);
+            color: white;
+            border-color: var(--red);
+        }
+
+        .mm-action-btn.remove:hover {
+            background: #a0321f;
+        }
+
+        /* === CHART LEGEND === */
+        .chart-legend {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .chart-legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .chart-legend-item .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        /* === CARD FOOTER === */
+        .card-footer {
+            padding: 12px 22px;
+            border-top: 1px solid var(--border);
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        /* === ADMIN FOOTER === */
+        .admin-footer {
+            padding: 24px 32px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            border-top: 1px solid var(--border);
+            margin-top: 20px;
+        }
+
+        .admin-footer-brand {
+            font-family: var(--font-display);
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .admin-footer-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .admin-footer-links a {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            transition: color var(--transition);
+        }
+
+        .admin-footer-links a:hover {
+            color: var(--maroon);
+        }
+
+        .admin-footer-copy {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            width: 100%;
+            text-align: center;
+            margin-top: 8px;
+        }
+    </style>
 </head>
-<body class="auth-page dashboard-page">
-    <!-- NAVBAR -->
-    <nav class="navbar navbar-admin">
-        <div class="nav-container">
-            <a href="/" class="nav-logo">
-                <img src="/assets/logo.png" alt="Humsafar Logo" class="logo-img">
-                <span>Humsafar</span>
-                <span class="admin-tag">ADMIN</span>
+
+<body class="admin-layout">
+
+    <!-- MOBILE HEADER -->
+    <header class="admin-mobile-header" id="admin-mobile-header">
+        <button class="mobile-menu-btn" id="admin-mobile-menu-btn" type="button" aria-label="Open navigation">
+            <span></span><span></span><span></span>
+        </button>
+        <span class="mobile-logo">Humsafar Admin</span>
+        <button class="btn-secondary" id="admin-logout-btn-mobile" type="button"
+            style="padding:6px 12px;font-size:0.72rem;color:var(--text-sidebar);border-color:var(--sidebar-border);">Logout</button>
+    </header>
+
+    <!-- SIDEBAR -->
+    <aside class="admin-sidebar" id="admin-sidebar">
+        <div class="sidebar-header">
+            <a href="/admin/dashboard#dashboard" class="sidebar-logo">
+                <img src="/assets/logo.png" alt="Humsafar Logo" class="sidebar-logo-img">
+                <div>
+                    <span class="sidebar-brand">Humsafar</span>
+                    <span class="sidebar-tagline">Admin Access </span>
+                </div>
             </a>
-            <div class="nav-actions">
-                <button class="btn-logout" id="admin-logout-btn">LOGOUT</button>
+        </div>
+
+        <div class="sidebar-user-card">
+            <div class="sidebar-avatar" id="sidebar-initials">AD</div>
+            <div>
+                <span class="sidebar-user-name" id="sidebar-user-name">Admin</span>
+                <span class="sidebar-user-role">Super Admin</span>
             </div>
         </div>
-    </nav>
 
-    <main class="dashboard-main">
-        <div class="dashboard-container">
-            <!-- Dashboard Header -->
-            <div class="dashboard-header">
-                <h1>Admin Dashboard</h1>
-                <p>Platform overview and user management</p>
+        <nav class="sidebar-nav" aria-label="Admin navigation">
+            <a class="sidebar-nav-item active" href="#dashboard" data-page="dashboard" id="nav-dashboard">
+                <span class="nav-icon material-symbols-outlined">dashboard</span>
+                <span>Dashboard</span>
+            </a>
+            <a class="sidebar-nav-item" href="#user-management" data-page="user-management" id="nav-user-management">
+                <span class="nav-icon material-symbols-outlined">group</span>
+                <span>User Management</span>
+            </a>
+            <a class="sidebar-nav-item" href="#verification-center" data-page="verification-center"
+                id="nav-verification-center">
+                <span class="nav-icon material-symbols-outlined">verified_user</span>
+                <span>Verification Center</span>
+            </a>
+            <a class="sidebar-nav-item" href="#ai-controls" data-page="ai-controls" id="nav-ai-controls">
+                <span class="nav-icon material-symbols-outlined">psychology</span>
+                <span>AI Control</span>
+            </a>
+            <a class="sidebar-nav-item" href="#media-moderation" data-page="media-moderation" id="nav-media-moderation">
+                <span class="nav-icon material-symbols-outlined">photo_library</span>
+                <span>Media Moderation</span>
+            </a>
+            <a class="sidebar-nav-item" href="#match-analytics" data-page="match-analytics" id="nav-match-analytics">
+                <span class="nav-icon material-symbols-outlined">analytics</span>
+                <span>Match Analytics</span>
+            </a>
+            <a class="sidebar-nav-item" href="#subscription" data-page="subscription" id="nav-subscription">
+                <span class="nav-icon material-symbols-outlined">payments</span>
+                <span>Subscription</span>
+            </a>
+            <a class="sidebar-nav-item" href="#global-settings" data-page="global-settings" id="nav-global-settings">
+                <span class="nav-icon material-symbols-outlined">settings</span>
+                <span>Global Settings</span>
+            </a>
+            <a class="sidebar-nav-item" href="#reports" data-page="reports" id="nav-reports">
+                <span class="nav-icon material-symbols-outlined">flag</span>
+                <span>Reports</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="sidebar-status">
+                <span class="dot"></span>
+                <span>System Status: <strong style="color:var(--green)">Online</strong></span>
+            </div>
+            <div class="sidebar-version">Version 2.4.0</div>
+            <button class="sidebar-logout-btn" id="admin-logout-btn" type="button">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+                    <path d="M10 17l5-5-5-5" />
+                    <path d="M15 12H3" />
+                    <path d="M21 3v18" />
+                </svg>
+                Logout
+            </button>
+        </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="admin-main">
+
+        <!-- ==================== PAGE: DASHBOARD ==================== -->
+        <section class="admin-page active" data-page="dashboard" id="page-dashboard">
+            <div class="page-topbar">
+                <div>
+                    <div class="page-title">Executive Intelligence</div>
+                    <div class="page-subtitle">Strategic overview of the Humsafar AI ecosystem performance.</div>
+                </div>
+                <div class="topbar-actions">
+                    <span class="topbar-pill"><span class="dot"></span> Admin Session Active</span>
+                    <button class="btn-secondary" id="admin-refresh-dashboard" type="button">
+                        <span class="material-symbols-outlined" style="font-size:16px">refresh</span>
+                        Refresh Data
+                    </button>
+                    <button class="btn-primary" id="btn-exec-report" type="button">
+                        <span class="material-symbols-outlined" style="font-size:16px">description</span>
+                        Executive Report
+                    </button>
+                </div>
             </div>
 
-            <!-- Stats Cards -->
-            <div class="dashboard-stats" id="dashboard-stats">
-                <div class="dash-stat-card">
-                    <div class="dash-stat-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <!-- STAT CARDS -->
+            <div class="stat-cards-row">
+                <div class="stat-card">
+                    <div class="stat-icon-row">
+                        <div class="stat-icon users"><span class="material-symbols-outlined">group</span></div>
+                        <span class="stat-trend" id="dash-users-trend">+0%</span>
                     </div>
-                    <div class="dash-stat-info">
-                        <span class="dash-stat-number" id="dash-total-users">0</span>
-                        <span class="dash-stat-label">Total Registered Users</span>
+                    <div class="stat-label">Total Registrations</div>
+                    <div class="stat-value" id="dash-total-users">0</div>
+                    <div class="stat-sub">Active user accounts</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon-row">
+                        <div class="stat-icon revenue"><span class="material-symbols-outlined">currency_rupee</span>
+                        </div>
+                        <span class="stat-trend" id="dash-revenue-trend">+0%</span>
+                    </div>
+                    <div class="stat-label">Total Revenue</div>
+                    <div class="stat-value" id="dash-revenue">₹0</div>
+                    <div class="stat-sub">ARR estimate</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon-row">
+                        <div class="stat-icon verified"><span class="material-symbols-outlined">verified</span></div>
+                        <span class="stat-trend" id="dash-verified-trend">0</span>
+                    </div>
+                    <div class="stat-label">Verified Profiles</div>
+                    <div class="stat-value" id="dash-verified-count">0</div>
+                    <div class="stat-sub">Pending: <span id="dash-pending-count">0</span></div>
+                </div>
+                <div class="stat-card accent">
+                    <div class="stat-icon-row">
+                        <div class="stat-icon matches"
+                            style="background:rgba(255,255,255,0.12);color:var(--gold-light)"><span
+                                class="material-symbols-outlined">favorite</span></div>
+                    </div>
+                    <div class="stat-label">Successful Matches</div>
+                    <div class="stat-value" id="dash-matches">0</div>
+                    <div class="stat-sub">This quarter</div>
+                </div>
+            </div>
+
+            <!-- CHART + MAP -->
+            <div class="content-grid-2" style="padding-top:0">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Acquisition Velocity</div>
+                        <div class="chart-legend" id="acq-legend">
+                            <div class="chart-legend-item"><span class="dot" style="background:var(--gold)"></span> New
+                                Signups</div>
+                            <div class="chart-legend-item"><span class="dot" style="background:var(--green)"></span>
+                                Verified</div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container">
+                            <canvas id="acquisition-chart" height="220"></canvas>
+                        </div>
                     </div>
                 </div>
-                <div class="dash-stat-card">
-                    <div class="dash-stat-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">System Integrity</div>
+                        <span class="material-symbols-outlined" style="color:var(--text-muted);font-size:18px"
+                            title="System health indicators">info</span>
                     </div>
-                    <div class="dash-stat-info">
-                        <span class="dash-stat-number" id="dash-verified">18,000+</span>
-                        <span class="dash-stat-label">Verified Profiles</span>
-                    </div>
-                </div>
-                <div class="dash-stat-card">
-                    <div class="dash-stat-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                    </div>
-                    <div class="dash-stat-info">
-                        <span class="dash-stat-number" id="dash-matches">12,500+</span>
-                        <span class="dash-stat-label">Successful Matches</span>
-                    </div>
-                </div>
-                <div class="dash-stat-card">
-                    <div class="dash-stat-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                    </div>
-                    <div class="dash-stat-info">
-                        <span class="dash-stat-number">95%</span>
-                        <span class="dash-stat-label">Satisfaction Rate</span>
+                    <div class="card-body" style="padding:16px 22px">
+                        <div class="integrity-item">
+                            <h4><span class="dot amber"></span> Audit Backlog</h4>
+                            <p id="integrity-audit-text">Monitoring profile verification queue...</p>
+                        </div>
+                        <div class="integrity-item">
+                            <h4><span class="dot red"></span> Anomalous Activity</h4>
+                            <p>System monitoring active. No critical alerts.</p>
+                        </div>
+                        <button class="btn-primary" style="width:100%;justify-content:center;margin-top:14px"
+                            onclick="window.location.hash='reports'">Initiate Security Audit</button>
                     </div>
                 </div>
             </div>
 
-            <!-- Users Table -->
-            <div class="dashboard-section">
-                <div class="section-header-row">
-                    <h2>Registered Users</h2>
-                    <span class="user-count-badge" id="user-count-badge">0 users</span>
+            <!-- AI PRECISION + DEMOGRAPHICS -->
+            <div class="content-grid-3" style="padding-top:0">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">AI Precision</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="donut-wrap">
+                            <div class="donut-canvas-wrap">
+                                <canvas id="precision-donut" width="140" height="140"></canvas>
+                                <div class="donut-center">
+                                    <div class="donut-center-value" id="precision-value">0%</div>
+                                    <div class="donut-center-label">Precision</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="insight-box">
+                            <div class="insight-label">Insight</div>
+                            <div class="insight-text" id="precision-insight">Analyzing AI model performance...</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="table-wrapper">
-                    <table class="users-table" id="users-table">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">User Demographics</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="donut-legend" id="demographics-legend">
+                            <div style="color:var(--text-muted);font-size:0.82rem">Loading demographics data...</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="integrity-card">
+                    <h3><span class="material-symbols-outlined" style="font-size:18px">shield</span> System Integrity
+                    </h3>
+                    <div class="integrity-item">
+                        <h4><span class="dot amber"></span> Audit Backlog</h4>
+                        <p id="integrity-pending-text">Checking verification backlog...</p>
+                    </div>
+                    <div class="integrity-item">
+                        <h4><span class="dot red"></span> Anomalous Activity</h4>
+                        <p>Real-time monitoring active.</p>
+                    </div>
+                    <button class="btn-primary"
+                        style="width:100%;justify-content:center;margin-top:14px;background:var(--red);border-color:var(--red)"
+                        onclick="window.location.hash='reports'">Initiate Security Audit</button>
+                </div>
+            </div>
+
+            <!-- REAL-TIME OPERATIONS -->
+            <div class="card" style="margin:0 32px 24px">
+                <div class="card-header">
+                    <div class="card-title">Real-Time Operations</div>
+                    <span class="feed-live"><span class="dot"></span> Live Updates</span>
+                </div>
+                <div class="feed-list" id="realtime-feed">
+                    <div class="feed-item">
+                        <div class="feed-icon registration"><span class="material-symbols-outlined">person_add</span>
+                        </div>
+                        <div class="feed-content">
+                            <div class="feed-title">Loading activity feed...</div>
+                            <div class="feed-desc">Recent events will appear here.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FOOTER -->
+            <div class="admin-footer">
+                <div class="admin-footer-brand">
+                    <span>Humsafar AI</span>
+                    <span>Heritage Intelligence</span>
+                </div>
+                <div class="admin-footer-links">
+                    <a href="#">Support</a>
+                    <a href="#">API Status</a>
+                    <a href="#">Security Policy</a>
+                </div>
+                <div class="admin-footer-copy">© 2024 Humsafar AI Enterprise. Proprietary & Confidential.</div>
+            </div>
+        </section>
+
+        <!-- ==================== PAGE: USER MANAGEMENT ==================== -->
+        <section class="admin-page" data-page="user-management" id="page-user-management">
+            <div class="page-topbar">
+                <div>
+                    <div class="page-title">User Ecosystem Overview</div>
+                    <div class="page-subtitle">Real-time telemetry and management of the global user base.</div>
+                </div>
+                <div class="topbar-actions">
+                    <button class="btn-secondary" id="btn-export-csv" type="button">
+                        <span class="material-symbols-outlined" style="font-size:16px">download</span>
+                        Export CSV
+                    </button>
+                </div>
+            </div>
+
+            <!-- STAT CARDS -->
+            <div class="stat-cards-row">
+                <div class="stat-card">
+                    <div class="stat-icon-row">
+                        <div class="stat-icon users"><span class="material-symbols-outlined">group</span></div>
+                        <span class="stat-trend" id="um-trend">+0%</span>
+                    </div>
+                    <div class="stat-label">Total Users</div>
+                    <div class="stat-value" id="um-total-users">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon-row">
+                        <div class="stat-icon verified"><span class="material-symbols-outlined">check_circle</span>
+                        </div>
+                    </div>
+                    <div class="stat-label">Active Users</div>
+                    <div class="stat-value" id="um-active-users">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon-row">
+                        <div class="stat-icon" style="background:var(--red-light);color:var(--red)"><span
+                                class="material-symbols-outlined">block</span></div>
+                    </div>
+                    <div class="stat-label">Suspended</div>
+                    <div class="stat-value" id="um-suspended">0</div>
+                </div>
+                <div class="stat-card accent">
+                    <div class="stat-icon-row">
+                        <div class="stat-icon" style="background:rgba(255,255,255,0.12);color:var(--gold-light)"><span
+                                class="material-symbols-outlined">auto_awesome</span></div>
+                    </div>
+                    <div class="stat-label">AI Matching Accuracy</div>
+                    <div class="stat-value" id="um-ai-accuracy">0%</div>
+                    <div class="stat-sub">Platform Performance Insight</div>
+                </div>
+            </div>
+
+            <!-- FILTER BAR -->
+            <div class="filter-bar">
+                <div class="search-input-wrap">
+                    <span class="material-symbols-outlined">search</span>
+                    <input type="text" class="search-input" id="user-search" placeholder="Search Name, ID, or Email">
+                </div>
+                <select class="filter-select" id="user-status-filter">
+                    <option value="all">Status: All</option>
+                    <option value="incomplete">Incomplete</option>
+                    <option value="pending">Pending</option>
+                    <option value="complete">Verified</option>
+                    <option value="rejected">Rejected</option>
+                </select>
+                <button class="btn-secondary" id="clear-filters-btn" type="button">Clear All</button>
+            </div>
+
+            <!-- USER TABLE -->
+            <div class="table-wrap"
+                style="margin-top:0;border-top:none;border-radius:0 0 var(--radius-lg) var(--radius-lg)">
+                <div class="table-header">
+                    <div class="table-header-left">
+                        <h3>Master User List</h3>
+                    </div>
+                    <span class="table-count" id="um-table-count">Showing 0 of 0</span>
+                </div>
+                <div class="table-scroll">
+                    <table class="data-table" id="users-table">
                         <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Full Name</th>
-                                <th>Email</th>
-                                <th>Phone</th>
+                                <th>User Profile</th>
+                                <th>User ID</th>
+                                <th>Age / Location</th>
                                 <th>Gender</th>
-                                <th>City</th>
-                                <th>Joined</th>
+                                <th>Verification</th>
+                                <th>Membership</th>
+                                <th>Last Active</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody id="users-tbody">
-                            <tr class="empty-row">
-                                <td colspan="7">Loading users...</td>
+                            <tr>
+                                <td colspan="8" style="padding:30px;text-align:center;color:var(--text-muted)">Loading
+                                    users...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pagination" id="users-pagination"></div>
+            </div>
+
+            <!-- VERIFICATION QUEUE + GOVERNANCE -->
+            <div class="content-grid-2" style="padding-top:24px">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Verification Audit Queue</div>
+                        <span class="card-badge pending" id="audit-pending-badge">0 Pending</span>
+                    </div>
+                    <div class="card-body" style="padding:12px 22px">
+                        <div class="audit-queue" id="audit-queue-list">
+                            <div style="padding:16px;color:var(--text-muted);font-size:0.84rem">Loading queue...</div>
+                        </div>
+                        <button class="btn-primary" style="width:100%;justify-content:center;margin-top:16px"
+                            onclick="window.location.hash='verification-center'">
+                            <span class="material-symbols-outlined" style="font-size:16px">verified_user</span>
+                            Start Verification Session
+                        </button>
+                    </div>
+                </div>
+                <div class="governance-card">
+                    <h3>Quick Governance</h3>
+                    <a href="#reports" class="governance-link">
+                        <span><span class="material-symbols-outlined"
+                                style="font-size:16px;vertical-align:middle;margin-right:8px;color:var(--gold)">campaign</span>Broadcast
+                            Alert</span>
+                        <span class="material-symbols-outlined">chevron_right</span>
+                    </a>
+                    <a href="#global-settings" class="governance-link">
+                        <span><span class="material-symbols-outlined"
+                                style="font-size:16px;vertical-align:middle;margin-right:8px;color:var(--gold)">block</span>IP
+                            Blacklist Manager</span>
+                        <span class="material-symbols-outlined">chevron_right</span>
+                    </a>
+                    <a href="#reports" class="governance-link">
+                        <span><span class="material-symbols-outlined"
+                                style="font-size:16px;vertical-align:middle;margin-right:8px;color:var(--gold)">history</span>Platform
+                            Audit Logs</span>
+                        <span class="material-symbols-outlined">chevron_right</span>
+                    </a>
+                    <a href="#subscription" class="governance-link">
+                        <span><span class="material-symbols-outlined"
+                                style="font-size:16px;vertical-align:middle;margin-right:8px;color:var(--gold)">upgrade</span>Tier
+                            Promotion Wizard</span>
+                        <span class="material-symbols-outlined">chevron_right</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== PAGE: VERIFICATION CENTER ==================== -->
+        <section class="admin-page" data-page="verification-center" id="page-verification-center">
+            <div class="page-topbar">
+                <div>
+                    <div class="page-title">Verification Center</div>
+                    <div class="page-subtitle">Identity and profile checks for trust and safety.</div>
+                </div>
+            </div>
+
+            <div class="stat-cards-row">
+                <div class="stat-card">
+                    <div class="stat-icon-row">
+                        <div class="stat-icon" style="background:rgba(41,128,185,0.1);color:var(--blue)"><span
+                                class="material-symbols-outlined">timer</span></div>
+                    </div>
+                    <div class="stat-label">Avg Review Time</div>
+                    <div class="stat-value">02:45 <span
+                            style="font-size:0.7rem;font-family:var(--font-body);color:var(--text-muted)">min</span>
+                    </div>
+                    <div class="stat-sub" style="color:var(--green)">9% faster than avg</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon-row">
+                        <div class="stat-icon" style="background:rgba(196,98,122,0.1);color:var(--rose)"><span
+                                class="material-symbols-outlined">groups</span></div>
+                    </div>
+                    <div class="stat-label">Team Average</div>
+                    <div class="stat-value">04:12 <span
+                            style="font-size:0.7rem;font-family:var(--font-body);color:var(--text-muted)">min</span>
+                    </div>
+                    <div class="stat-sub">Across all moderators</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon-row">
+                        <div class="stat-icon verified"><span class="material-symbols-outlined">task_alt</span></div>
+                    </div>
+                    <div class="stat-label">Daily Quota</div>
+                    <div class="stat-value" id="vc-daily-quota">0 / 80</div>
+                </div>
+                <div class="stat-card" style="border-color:rgba(192,57,43,0.2);">
+                    <div class="stat-icon-row">
+                        <div class="stat-icon" style="background:var(--red-light);color:var(--red)"><span
+                                class="material-symbols-outlined">priority_high</span></div>
+                    </div>
+                    <div class="stat-label">High Urgency</div>
+                    <div class="stat-value" id="vc-high-urgency">0</div>
+                    <div class="stat-sub" style="color:var(--red)">Action required now</div>
+                </div>
+            </div>
+
+            <!-- Verification Queue + Profile Panel -->
+            <div class="content-grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Verification Queue</div>
+                        <span class="card-badge pending" id="vc-queue-badge">0 Pending</span>
+                    </div>
+                    <div class="card-body" style="padding:12px 22px">
+                        <div class="audit-queue" id="vc-queue-list">
+                            <div style="padding:16px;color:var(--text-muted);font-size:0.84rem">Loading verification
+                                queue...</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Profile Detail</div>
+                    </div>
+                    <div class="card-body" id="vc-profile-detail">
+                        <div style="text-align:center;padding:40px 20px;color:var(--text-muted)">
+                            <span class="material-symbols-outlined"
+                                style="font-size:48px;opacity:0.3;display:block;margin-bottom:12px">person_search</span>
+                            <p style="font-size:0.88rem">Select a profile from the queue to view details</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Audit Trail -->
+            <div class="table-wrap">
+                <div class="table-header">
+                    <div class="table-header-left">
+                        <h3><span class="material-symbols-outlined"
+                                style="font-size:18px;vertical-align:middle;margin-right:4px">history</span>
+                            Verification Audit Trail</h3>
+                    </div>
+                </div>
+                <div class="table-scroll">
+                    <table class="data-table" id="vc-audit-table">
+                        <thead>
+                            <tr>
+                                <th>Timestamp</th>
+                                <th>User Profile</th>
+                                <th>Action</th>
+                                <th>Moderator</th>
+                                <th>Notes / Reason</th>
+                            </tr>
+                        </thead>
+                        <tbody id="vc-audit-tbody">
+                            <tr>
+                                <td colspan="5" style="padding:20px;text-align:center;color:var(--text-muted)">Audit
+                                    trail will appear here.</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
-        </div>
+        </section>
+
+        <!-- ==================== PAGE: AI CONTROLS ==================== -->
+        <section class="admin-page" data-page="ai-controls" id="page-ai-controls">
+            <div class="page-topbar">
+                <div>
+                    <div class="page-title">AI Matching & Compatibility Engine</div>
+                    <div class="page-subtitle">
+                        <span style="display:inline-flex;align-items:center;gap:6px">
+                            <span class="dot"
+                                style="width:8px;height:8px;background:var(--green);border-radius:50%;display:inline-block"></span>
+                            Status: Active (V2.4.0-Pro) | Engine Last Calibrated: 2h ago
+                        </span>
+                    </div>
+                </div>
+                <div class="topbar-actions">
+                    <button class="btn-primary" type="button">
+                        <span class="material-symbols-outlined" style="font-size:16px">refresh</span>
+                        Run Global Re-match
+                    </button>
+                </div>
+            </div>
+
+            <!-- Compatibility Weightage -->
+            <div class="card" style="margin:24px 32px">
+                <div class="card-header">
+                    <div class="card-title">Compatibility Weightage</div>
+                    <button class="btn-secondary" style="color:var(--red)">
+                        <span class="material-symbols-outlined" style="font-size:16px">restart_alt</span>
+                        Reset to Default
+                    </button>
+                </div>
+                <div class="card-body">
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px 40px">
+                        <div class="slider-group">
+                            <div class="slider-label">
+                                <div><span class="slider-label-text">Personal Values</span><br><span
+                                        class="slider-label-sub">Family, Religion, Community</span></div>
+                                <span class="slider-label-value" id="slider-val-1">40%</span>
+                            </div>
+                            <input type="range" min="0" max="100" value="40" id="slider-1"
+                                oninput="document.getElementById('slider-val-1').textContent=this.value+'%'">
+                        </div>
+                        <div class="slider-group">
+                            <div class="slider-label">
+                                <div><span class="slider-label-text">Lifestyle</span><br><span
+                                        class="slider-label-sub">Diet, Habits, Social Activity</span></div>
+                                <span class="slider-label-value" id="slider-val-2">25%</span>
+                            </div>
+                            <input type="range" min="0" max="100" value="25" id="slider-2"
+                                oninput="document.getElementById('slider-val-2').textContent=this.value+'%'">
+                        </div>
+                        <div class="slider-group">
+                            <div class="slider-label">
+                                <div><span class="slider-label-text">Demographics</span><br><span
+                                        class="slider-label-sub">Age, Location, Language</span></div>
+                                <span class="slider-label-value" id="slider-val-3">20%</span>
+                            </div>
+                            <input type="range" min="0" max="100" value="20" id="slider-3"
+                                oninput="document.getElementById('slider-val-3').textContent=this.value+'%'">
+                        </div>
+                        <div class="slider-group">
+                            <div class="slider-label">
+                                <div><span class="slider-label-text">Professional</span><br><span
+                                        class="slider-label-sub">Education, Income, Career Path</span></div>
+                                <span class="slider-label-value" id="slider-val-4">15%</span>
+                            </div>
+                            <input type="range" min="0" max="100" value="15" id="slider-4"
+                                oninput="document.getElementById('slider-val-4').textContent=this.value+'%'">
+                        </div>
+                    </div>
+                    <div class="insight-box" style="margin-top:20px">
+                        <div class="insight-label">Note</div>
+                        <div class="insight-text">These weights directly influence the ranking algorithm. Increasing
+                            "Personal Values" prioritizes core compatibility over visual or professional preferences.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Simulation + Efficiency -->
+            <div class="content-grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Simulation Engine</div>
+                    </div>
+                    <div class="card-body">
+                        <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:16px">Enter User IDs to
+                            calculate deep compatibility scores before global deployment.</p>
+                        <div class="sim-form">
+                            <div>
+                                <div class="sim-label">Primary User ID</div>
+                                <input type="text" class="sim-input" id="sim-primary" placeholder="e.g. USR-52631">
+                            </div>
+                            <div class="sim-swap"><span class="material-symbols-outlined">swap_vert</span></div>
+                            <div>
+                                <div class="sim-label">Secondary User ID</div>
+                                <input type="text" class="sim-input" id="sim-secondary" placeholder="e.g. USR-44102">
+                            </div>
+                            <button class="sim-btn" type="button" id="btn-run-sim">
+                                <span class="material-symbols-outlined" style="font-size:18px">play_arrow</span>
+                                Run Simulation
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="efficiency-card">
+                    <div class="efficiency-label">System Efficiency</div>
+                    <div class="efficiency-value" id="ai-efficiency">92%</div>
+                    <div class="efficiency-sub">AI Success Rate</div>
+                    <div class="efficiency-desc">Conversion of AI-suggested matches into sustained user interactions (7+
+                        days).</div>
+                </div>
+            </div>
+
+            <!-- Benchmarks -->
+            <div style="padding:8px 32px 8px">
+                <h3 style="font-family:var(--font-display);font-size:1.1rem;color:var(--text-dark)">Global Algorithm
+                    Benchmarks</h3>
+            </div>
+            <div class="benchmark-row">
+                <div class="benchmark-card">
+                    <div class="label">Average Match Prob.</div>
+                    <div class="value">74.2%</div>
+                    <div class="sub">↑ +1.2%</div>
+                </div>
+                <div class="benchmark-card">
+                    <div class="label">Heritage Overlap</div>
+                    <div class="value">82%</div>
+                    <div class="sub">Global Config</div>
+                </div>
+                <div class="benchmark-card">
+                    <div class="label">Social Density</div>
+                    <div class="value">Lvl 3</div>
+                    <div class="sub">Deep Context</div>
+                </div>
+                <div class="benchmark-card">
+                    <div class="label">System Load</div>
+                    <div class="value">0.4ms</div>
+                    <div class="sub" style="color:var(--green)">● Optimal</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== PAGE: MEDIA MODERATION ==================== -->
+        <section class="admin-page" data-page="media-moderation" id="page-media-moderation">
+            <div class="page-topbar">
+                <div>
+                    <div class="page-title">Media Moderation</div>
+                    <div class="page-subtitle">Photos and uploads flagged for manual review.</div>
+                </div>
+                <div class="topbar-actions">
+                    <select class="filter-select" id="mm-sort">
+                        <option>Sort By: Newest</option>
+                        <option>Sort By: Oldest</option>
+                        <option>Sort By: Flagged</option>
+                    </select>
+                    <button class="btn-primary" type="button"><span class="material-symbols-outlined"
+                            style="font-size:16px">check_circle</span> Bulk Approve</button>
+                </div>
+            </div>
+
+            <!-- Tab Bar -->
+            <div class="filter-bar" style="gap:0;padding:0 32px;border-bottom:1px solid var(--border)">
+                <button class="mm-tab active" data-tab="pending" onclick="switchMmTab(this)">Pending <span
+                        class="nav-badge" id="mm-pending-badge"
+                        style="margin-left:6px;background:var(--maroon);font-size:0.6rem;padding:2px 7px;border-radius:10px;color:#fff">0</span></button>
+                <button class="mm-tab" data-tab="flagged" onclick="switchMmTab(this)">AI Flagged</button>
+                <button class="mm-tab" data-tab="reported" onclick="switchMmTab(this)">Reported</button>
+                <button class="mm-tab" data-tab="approved" onclick="switchMmTab(this)">Approved</button>
+                <button class="mm-tab" data-tab="removed" onclick="switchMmTab(this)">Removed</button>
+            </div>
+
+            <!-- Photo Cards Grid + Sidebar -->
+            <div style="display:grid;grid-template-columns:1fr 300px;gap:20px;padding:24px 32px">
+                <div class="mm-photo-grid" id="mm-photo-grid">
+                    <!-- JS renders photo cards here -->
+                </div>
+                <div style="display:flex;flex-direction:column;gap:16px">
+                    <!-- AI Performance -->
+                    <div class="card" style="text-align:center">
+                        <div class="card-body" style="padding:28px 20px">
+                            <span class="material-symbols-outlined"
+                                style="font-size:36px;color:var(--gold);display:block;margin-bottom:10px">smart_toy</span>
+                            <div
+                                style="font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-muted);margin-bottom:8px">
+                                Moderation AI Performance</div>
+                            <div style="font-family:var(--font-display);font-size:2.8rem;font-weight:700;color:var(--text-dark);line-height:1"
+                                id="mm-ai-accuracy">94.8%</div>
+                            <div style="font-size:0.78rem;color:var(--text-muted);margin:8px 0 14px;line-height:1.5">
+                                Accuracy in flagging inappropriate content today</div>
+                            <div
+                                style="width:100%;height:6px;background:var(--border);border-radius:3px;overflow:hidden">
+                                <div style="width:94.8%;height:100%;background:var(--gold);border-radius:3px"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Quick Tools -->
+                    <div class="governance-card">
+                        <h3 style="font-size:0.9rem;margin-bottom:12px">Admin Quick Tools</h3>
+                        <a href="#global-settings" class="governance-link"
+                            style="margin-bottom:8px;background:rgba(255,255,255,0.06);border-radius:8px">
+                            <span><span class="material-symbols-outlined"
+                                    style="font-size:16px;vertical-align:middle;margin-right:8px;color:var(--green)">block</span>Restrict
+                                Uploads</span>
+                        </a>
+                        <a href="#reports" class="governance-link"
+                            style="margin-bottom:8px;background:rgba(255,255,255,0.06);border-radius:8px">
+                            <span><span class="material-symbols-outlined"
+                                    style="font-size:16px;vertical-align:middle;margin-right:8px;color:var(--blue)">mail</span>Mass
+                                Warning</span>
+                        </a>
+                        <a href="#reports" class="governance-link"
+                            style="background:rgba(255,255,255,0.06);border-radius:8px">
+                            <span><span class="material-symbols-outlined"
+                                    style="font-size:16px;vertical-align:middle;margin-right:8px;color:var(--rose)">history</span>Moderation
+                                History</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== PAGE: MATCH ANALYTICS ==================== -->
+        <section class="admin-page" data-page="match-analytics" id="page-match-analytics">
+            <div class="page-topbar">
+                <div>
+                    <div class="page-title">Match Analytics</div>
+                    <div class="page-subtitle">Match funnels, engagement, and recommendation performance.</div>
+                </div>
+            </div>
+            <div class="stat-cards-row">
+                <div class="stat-card">
+                    <div class="stat-icon-row">
+                        <div class="stat-icon matches"><span class="material-symbols-outlined">favorite</span></div>
+                    </div>
+                    <div class="stat-label">Match Success Rate</div>
+                    <div class="stat-value" id="ma-success-rate">0%</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon-row">
+                        <div class="stat-icon" style="background:rgba(212,168,83,0.12);color:var(--gold)"><span
+                                class="material-symbols-outlined">event_available</span></div>
+                    </div>
+                    <div class="stat-label">Daily Matches</div>
+                    <div class="stat-value" id="ma-daily-matches">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon-row">
+                        <div class="stat-icon" style="background:rgba(41,128,185,0.1);color:var(--blue)"><span
+                                class="material-symbols-outlined">repeat</span></div>
+                    </div>
+                    <div class="stat-label">Repeat Users</div>
+                    <div class="stat-value" id="ma-repeat-users">0</div>
+                </div>
+                <div class="stat-card accent">
+                    <div class="stat-icon-row">
+                        <div class="stat-icon" style="background:rgba(255,255,255,0.12);color:var(--gold-light)"><span
+                                class="material-symbols-outlined">trending_up</span></div>
+                    </div>
+                    <div class="stat-label">Total Interactions</div>
+                    <div class="stat-value" id="ma-interactions">0</div>
+                </div>
+            </div>
+            <div class="card" style="margin:0 32px 24px">
+                <div class="card-header">
+                    <div class="card-title">Match Volume Over Time</div>
+                </div>
+                <div class="card-body">
+                    <div class="chart-container">
+                        <canvas id="match-chart" height="200"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Successful Matches -->
+            <div class="card" style="margin:0 32px 24px">
+                <div class="card-header">
+                    <div class="card-title"><span class="material-symbols-outlined" style="font-size:18px;vertical-align:middle;margin-right:6px;color:var(--rose)">favorite</span>Recent Successful Matches</div>
+                    <div class="card-actions"><span id="recent-matches-count" style="font-size:0.78rem;color:var(--text-muted)"></span></div>
+                </div>
+                <div class="table-scroll">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Partner 1</th>
+                                <th>Partner 2</th>
+                                <th>Compatibility</th>
+                                <th>Match Date</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recent-matches-tbody">
+                            <tr><td colspan="4" style="padding:30px;text-align:center;color:var(--text-muted)">Loading matches...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== PAGE: SUBSCRIPTION ==================== -->
+        <section class="admin-page" data-page="subscription" id="page-subscription">
+            <div class="page-topbar">
+                <div>
+                    <div class="page-title">Revenue & Subscriptions</div>
+                    <div class="page-subtitle">Comprehensive financial performance across global Humsafar AI regions.
+                    </div>
+                </div>
+                <div class="topbar-actions">
+                    <button class="btn-secondary"><span class="material-symbols-outlined"
+                            style="font-size:16px">calendar_month</span> Last 30 Days</button>
+                    <button class="btn-primary"><span class="material-symbols-outlined"
+                            style="font-size:16px">download</span> Export CSV</button>
+                </div>
+            </div>
+            <div class="stat-cards-row">
+                <div class="stat-card">
+                    <div class="stat-icon-row">
+                        <div class="stat-icon revenue"><span
+                                class="material-symbols-outlined">account_balance_wallet</span></div><span
+                            class="stat-trend">+12.5%</span>
+                    </div>
+                    <div class="stat-label">Total Revenue</div>
+                    <div class="stat-value" id="sub-total-rev">₹2,845,920</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon-row">
+                        <div class="stat-icon" style="background:rgba(212,168,83,0.12);color:var(--gold)"><span
+                                class="material-symbols-outlined">calendar_month</span></div><span
+                            class="stat-trend">+6.2%</span>
+                    </div>
+                    <div class="stat-label">Monthly Revenue</div>
+                    <div class="stat-value" id="sub-monthly-rev">₹412,050</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon-row">
+                        <div class="stat-icon" style="background:var(--red-light);color:var(--red)"><span
+                                class="material-symbols-outlined">people</span></div><span
+                            class="stat-trend down">-6.8%</span>
+                    </div>
+                    <div class="stat-label">Premium Subscribers</div>
+                    <div class="stat-value" id="sub-premium-count">18,245</div>
+                    <div class="stat-sub">16.1k Active • 2.1k Expired</div>
+                </div>
+                <div class="stat-card accent">
+                    <div class="stat-icon-row">
+                        <div class="stat-icon" style="background:rgba(255,255,255,0.12);color:var(--gold-light)"><span
+                                class="material-symbols-outlined">trending_up</span></div><span class="stat-trend"
+                            style="background:rgba(255,255,255,0.12);color:var(--gold-light)">+2.1%</span>
+                    </div>
+                    <div class="stat-label">ARPU</div>
+                    <div class="stat-value">₹156.40</div>
+                    <div class="stat-sub">Avg. Revenue Per User</div>
+                </div>
+            </div>
+
+            <!-- Revenue Chart + Conversion -->
+            <div class="content-grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Revenue Trend</div>
+                        <div class="chart-legend">
+                            <div class="chart-legend-item"><span class="dot" style="background:var(--maroon)"></span>
+                                Revenue</div>
+                            <div class="chart-legend-item"><span class="dot" style="background:var(--green)"></span>
+                                Target</div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container"><canvas id="revenue-chart" height="220"></canvas></div>
+                    </div>
+                    <div class="card-footer">Fiscal performance over last 12 months</div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:16px">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Conversion</div>
+                        </div>
+                        <div class="card-body" style="padding:16px 22px">
+                            <p style="font-size:0.72rem;color:var(--text-muted);margin-bottom:14px">User conversion
+                                funnel</p>
+                            <div style="margin-bottom:14px">
+                                <div
+                                    style="display:flex;justify-content:space-between;font-size:0.78rem;margin-bottom:4px">
+                                    <span style="font-weight:600;color:var(--text-dark)">Registered Users</span><span
+                                        style="color:var(--text-muted)">2.4M</span>
+                                </div>
+                                <div style="height:8px;background:var(--border);border-radius:4px;overflow:hidden">
+                                    <div style="width:100%;height:100%;background:var(--blue);border-radius:4px"></div>
+                                </div>
+                            </div>
+                            <div style="margin-bottom:14px">
+                                <div
+                                    style="display:flex;justify-content:space-between;font-size:0.78rem;margin-bottom:4px">
+                                    <span style="font-weight:600;color:var(--text-dark)">Profile Verified</span><span
+                                        style="color:var(--text-muted)">1.8M (75%)</span>
+                                </div>
+                                <div style="height:8px;background:var(--border);border-radius:4px;overflow:hidden">
+                                    <div style="width:75%;height:100%;background:var(--maroon);border-radius:4px"></div>
+                                </div>
+                            </div>
+                            <div style="margin-bottom:14px">
+                                <div
+                                    style="display:flex;justify-content:space-between;font-size:0.78rem;margin-bottom:4px">
+                                    <span style="font-weight:600;color:var(--text-dark)">Premium Trial</span><span
+                                        style="color:var(--text-muted)">320K (18%)</span>
+                                </div>
+                                <div style="height:8px;background:var(--border);border-radius:4px;overflow:hidden">
+                                    <div style="width:18%;height:100%;background:var(--gold);border-radius:4px"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div
+                                    style="display:flex;justify-content:space-between;font-size:0.78rem;margin-bottom:4px">
+                                    <span style="font-weight:600;color:var(--text-dark)">Paid Subscriber</span><span
+                                        style="color:var(--text-muted)">18.2k (5.6%)</span>
+                                </div>
+                                <div style="height:8px;background:var(--border);border-radius:4px;overflow:hidden">
+                                    <div style="width:5.6%;height:100%;background:var(--green);border-radius:4px"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Premium Growth Engine -->
+                    <div class="efficiency-card" style="border-radius:var(--radius-lg)">
+                        <div class="efficiency-label">Premium Growth Engine</div>
+                        <div
+                            style="font-family:var(--font-display);font-size:2.2rem;font-weight:700;color:var(--gold-light);line-height:1">
+                            84%</div>
+                        <div style="font-size:0.82rem;color:rgba(255,255,255,0.8);margin:4px 0 14px">Overall Retention
+                            Rate</div>
+                        <div style="display:flex;gap:20px">
+                            <div>
+                                <div style="font-size:1.1rem;font-weight:700;color:white">12k</div>
+                                <div
+                                    style="font-size:0.6rem;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,255,255,0.5)">
+                                    New This Mo.</div>
+                            </div>
+                            <div>
+                                <div style="font-size:1.1rem;font-weight:700;color:white">2.4k</div>
+                                <div
+                                    style="font-size:0.6rem;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,255,255,0.5)">
+                                    Upgrades</div>
+                            </div>
+                            <div>
+                                <div style="font-size:1.1rem;font-weight:700;color:white">0.4%</div>
+                                <div
+                                    style="font-size:0.6rem;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,255,255,0.5)">
+                                    Churn</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Subscribers Table -->
+            <div class="table-wrap">
+                <div class="table-header">
+                    <div class="table-header-left">
+                        <h3>Recent Subscribers</h3>
+                        <span class="table-count">Real-time premium membership activity</span>
+                    </div>
+                    <div style="display:flex;gap:6px">
+                        <button class="btn-secondary" style="padding:6px 12px;font-size:0.72rem"
+                            onclick="filterSubTab(this,'all')">All</button>
+                        <button class="btn-secondary" style="padding:6px 12px;font-size:0.72rem"
+                            onclick="filterSubTab(this,'gold')">Gold</button>
+                        <button class="btn-secondary" style="padding:6px 12px;font-size:0.72rem"
+                            onclick="filterSubTab(this,'platinum')">Platinum</button>
+                    </div>
+                </div>
+                <div class="table-scroll">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>User Details</th>
+                                <th>Plan Type</th>
+                                <th>Purchase Date</th>
+                                <th>Expiry Date</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="sub-tbody">
+                            <tr>
+                                <td colspan="6" style="padding:24px;text-align:center;color:var(--text-muted)">
+                                    Subscriber data will appear when billing is connected.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== PAGE: GLOBAL SETTINGS ==================== -->
+        <section class="admin-page" data-page="global-settings" id="page-global-settings">
+            <div class="page-topbar">
+                <div>
+                    <div class="page-title">Global Platform Configuration</div>
+                    <div class="page-subtitle">Manage the global visual identity, core platform markers, and operational
+                        settings.</div>
+                </div>
+                <div class="topbar-actions">
+                    <button class="btn-secondary" style="color:var(--red)"><span class="material-symbols-outlined"
+                            style="font-size:16px">delete_sweep</span> Discard Changes</button>
+                    <button class="btn-primary"><span class="material-symbols-outlined"
+                            style="font-size:16px">check_circle</span> Apply Global Changes</button>
+                </div>
+            </div>
+
+            <!-- 1. Branding & Identity -->
+            <div class="section-pad" style="padding-bottom:8px">
+                <h3 style="font-family:var(--font-display);font-size:1.15rem;color:var(--text-dark)">1. Branding &
+                    Identity</h3>
+                <p style="font-size:0.78rem;color:var(--text-muted);margin-top:4px">Manage the global visual identity
+                    and core platform markers.</p>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr auto;gap:16px;padding:12px 32px 24px;align-items:start"
+                class="gs-brand-grid">
+                <div>
+                    <div class="sim-label">Application Display Name</div>
+                    <input type="text" class="sim-input" value="Humsafar AI" style="margin-top:4px">
+                </div>
+                <div>
+                    <div class="sim-label">Branding Tagline</div>
+                    <input type="text" class="sim-input" value="Cultural Heritage Meets Enterprise P..."
+                        style="margin-top:4px">
+                </div>
+                <div style="text-align:center">
+                    <div class="sim-label">Platform Logo</div>
+                    <div
+                        style="width:72px;height:72px;border-radius:var(--radius-md);border:2px dashed var(--border-dark);display:flex;align-items:center;justify-content:center;margin:4px auto 6px">
+                        <span class="material-symbols-outlined"
+                            style="font-size:28px;color:var(--text-muted)">image</span>
+                    </div>
+                    <button class="btn-secondary" style="font-size:0.68rem;padding:4px 10px">Replace Global
+                        Logo</button>
+                </div>
+            </div>
+            <!-- Color Palette -->
+            <div style="display:flex;gap:10px;padding:0 32px 24px;flex-wrap:wrap">
+                <div style="text-align:center">
+                    <div style="width:64px;height:40px;border-radius:8px;background:var(--maroon-deep)"></div>
+                    <div style="font-size:0.6rem;color:var(--text-muted);margin-top:4px">Heritage Maroon</div>
+                </div>
+                <div style="text-align:center">
+                    <div style="width:64px;height:40px;border-radius:8px;background:var(--gold)"></div>
+                    <div style="font-size:0.6rem;color:var(--text-muted);margin-top:4px">Elegant Gold</div>
+                </div>
+                <div style="text-align:center">
+                    <div style="width:64px;height:40px;border-radius:8px;background:var(--rose)"></div>
+                    <div style="font-size:0.6rem;color:var(--text-muted);margin-top:4px">Accent Rose</div>
+                </div>
+                <div style="text-align:center">
+                    <div style="width:64px;height:40px;border-radius:8px;background:var(--main-bg)"></div>
+                    <div style="font-size:0.6rem;color:var(--text-muted);margin-top:4px">Surface Skin</div>
+                </div>
+            </div>
+
+            <!-- 2. User Rules & Onboarding -->
+            <div class="section-pad" style="padding-bottom:8px">
+                <h3 style="font-family:var(--font-display);font-size:1.15rem;color:var(--text-dark)">2. User Rules &
+                    Onboarding</h3>
+                <p style="font-size:0.78rem;color:var(--text-muted);margin-top:4px">Registration requirements, profile
+                    governance, and verification protocols.</p>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:12px 32px 24px"
+                class="gs-rules-grid">
+                <div>
+                    <div class="setting-card">
+                        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+                            <h3 style="margin:0">Manual Profile Approval</h3>
+                            <label class="toggle-switch"><input type="checkbox" checked><span
+                                    class="toggle-slider"></span></label>
+                        </div>
+                        <p>Every new registration requires admin approval before the profile becomes publicly visible.
+                        </p>
+                    </div>
+                    <div class="setting-card" style="margin-top:12px">
+                        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+                            <h3 style="margin:0">Mandatory KYC</h3>
+                            <label class="toggle-switch"><input type="checkbox" checked><span
+                                    class="toggle-slider"></span></label>
+                        </div>
+                        <p>ID/Government document is required before matching begins.</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="setting-card">
+                        <div class="sim-label">Minimum Age Requirement</div>
+                        <input type="number" class="sim-input" value="18" style="margin-top:4px;max-width:100px">
+                    </div>
+                    <div class="setting-card" style="margin-top:12px">
+                        <div class="sim-label">Maximum Profile Photo Uploads</div>
+                        <input type="number" class="sim-input" value="6" style="margin-top:4px;max-width:100px">
+                        <div style="font-size:0.7rem;color:var(--text-muted);margin-top:6px">6 Media Assets</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. AI Thresholds & Matching -->
+            <div class="section-pad" style="padding-bottom:8px">
+                <h3 style="font-family:var(--font-display);font-size:1.15rem;color:var(--text-dark)">3. AI Thresholds &
+                    Matching</h3>
+                <p style="font-size:0.78rem;color:var(--text-muted);margin-top:4px">Configure inference engines and the
+                    core recommendation logic parameters.</p>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:12px 32px 24px" class="gs-ai-grid">
+                <div class="efficiency-card" style="border-radius:var(--radius-lg)">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+                        <div>
+                            <div
+                                style="font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5)">
+                                AI Confidence Score (Min)</div>
+                        </div>
+                        <div style="font-family:var(--font-display);font-size:1.8rem;font-weight:700;color:white">85%
+                        </div>
+                    </div>
+                    <div style="font-size:0.78rem;color:rgba(255,255,255,0.6);margin-bottom:10px">Matches below this
+                        threshold require a manual review override.</div>
+                    <div style="display:flex;justify-content:space-between;align-items:center">
+                        <div>
+                            <div
+                                style="font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5)">
+                                Daily Interaction Limit</div>
+                        </div>
+                        <div style="font-family:var(--font-display);font-size:1.8rem;font-weight:700;color:white">50
+                        </div>
+                    </div>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+                    <div class="setting-card" style="text-align:center">
+                        <span class="material-symbols-outlined"
+                            style="font-size:28px;color:var(--gold);margin-bottom:8px">bolt</span>
+                        <h3 style="font-size:0.9rem">Quick Match Engine</h3>
+                        <p style="font-size:0.72rem;margin-bottom:8px">Real-time low-latency lookups for instant
+                            matching</p>
+                        <span class="badge verified">● Active</span>
+                    </div>
+                    <div class="setting-card" style="text-align:center">
+                        <span class="material-symbols-outlined"
+                            style="font-size:28px;color:var(--rose);margin-bottom:8px">hub</span>
+                        <h3 style="font-size:0.9rem">Regional Logic</h3>
+                        <p style="font-size:0.72rem;margin-bottom:8px">Adaptive weighting for local cultural context</p>
+                        <span class="badge pending">0 Enabled</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. Communication & Security -->
+            <div class="section-pad" style="padding-bottom:8px">
+                <h3 style="font-family:var(--font-display);font-size:1.15rem;color:var(--text-dark)">4. Communication &
+                    Security</h3>
+                <p style="font-size:0.78rem;color:var(--text-muted);margin-top:4px">Data protection layers, end-to-end
+                    encryption, and retention policies.</p>
+            </div>
+            <div class="settings-grid">
+                <div class="setting-card" style="text-align:center">
+                    <span class="material-symbols-outlined"
+                        style="font-size:32px;color:var(--rose);margin-bottom:8px">lock</span>
+                    <h3>E2E Message Encryption</h3>
+                    <p>Enterprise-grade protocol encryption for all platform peer-to-peer dialogues.</p>
+                    <span class="badge verified" style="margin-top:10px">● Always Encrypted</span>
+                </div>
+                <div class="setting-card" style="text-align:center">
+                    <span class="material-symbols-outlined"
+                        style="font-size:32px;color:var(--gold);margin-bottom:8px">delete_sweep</span>
+                    <h3>Data Retention Policy</h3>
+                    <p>Automatically purge inactive user data after a defined compliance cutoff.</p>
+                    <div
+                        style="margin-top:10px;padding:6px 12px;background:var(--main-bg);border-radius:8px;font-size:0.78rem;font-weight:600;color:var(--text-dark)">
+                        180 Days Retention</div>
+                </div>
+                <div class="setting-card" style="text-align:center">
+                    <span class="material-symbols-outlined"
+                        style="font-size:32px;color:var(--green);margin-bottom:8px">vpn_lock</span>
+                    <h3>Advanced IP Whitelist</h3>
+                    <p>Restrict administrative dashboard access to verified corporate subnets.</p>
+                    <button class="btn-primary" style="margin-top:10px;font-size:0.72rem;padding:7px 14px">Manage
+                        Access</button>
+                </div>
+            </div>
+
+            <!-- 5. System Health -->
+            <div class="section-pad" style="padding-bottom:8px">
+                <h3 style="font-family:var(--font-display);font-size:1.15rem;color:var(--text-dark)">5. System Health &
+                    Infrastructure</h3>
+                <p style="font-size:0.78rem;color:var(--text-muted);margin-top:4px">Real-time node monitoring and
+                    infrastructure operational metrics.</p>
+            </div>
+            <div class="benchmark-row">
+                <div class="benchmark-card">
+                    <div class="label">API Cluster Uptime</div>
+                    <div class="value">99.99%</div>
+                    <div class="sub" style="color:var(--green)">↑ 0.01%</div>
+                </div>
+                <div class="benchmark-card">
+                    <div class="label">DB Latency (Avg)</div>
+                    <div class="value">14ms</div>
+                    <div class="sub">Optimal</div>
+                </div>
+                <div class="benchmark-card">
+                    <div class="label">Active Nodes</div>
+                    <div class="value">42 / 48</div>
+                    <div class="sub">6 Standby</div>
+                </div>
+                <div class="benchmark-card">
+                    <div class="label">Error Rate (24h)</div>
+                    <div class="value">0.02%</div>
+                    <div class="sub" style="color:var(--green)">Below threshold</div>
+                </div>
+            </div>
+
+            <!-- Infrastructure Log -->
+            <div class="card" style="margin:0 32px 32px">
+                <div class="card-header" style="background:var(--maroon-deep);border:none">
+                    <div
+                        style="font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5)">
+                        Live Infrastructure Log — Node AI Mesh Farm</div>
+                    <span class="material-symbols-outlined" style="color:var(--gold);font-size:16px">terminal</span>
+                </div>
+                <div
+                    style="background:var(--maroon-deep);padding:12px 22px 18px;font-family:var(--font-mono);font-size:0.72rem;color:rgba(255,255,255,0.55);line-height:1.9;max-height:180px;overflow-y:auto">
+                    <div><span style="color:var(--gold)">09:41:03</span> <span style="color:var(--green)">INFO</span>
+                        Application layer bootstrapping (injected with Express) Cluster node 1.</div>
+                    <div><span style="color:var(--gold)">09:41:01</span> <span style="color:var(--green)">INFO</span>
+                        Node SSL/TLS secured, AES-256 enabled via Node.js Crypto module.</div>
+                    <div><span style="color:var(--gold)">09:40:58</span> <span style="color:var(--green)">INFO</span>
+                        HTTPS-header validated for CLI: X86-SuperAVX2.</div>
+                    <div><span style="color:var(--gold)">09:40:55</span> <span style="color:var(--amber)">WARN</span>
+                        Matching Engine v4.2.1: HotSwap initialized.</div>
+                    <div><span style="color:var(--gold)">09:40:50</span> <span style="color:var(--green)">INFO</span>
+                        Traffic shard rebalance → database migration interface.</div>
+                    <div><span style="color:var(--gold)">09:40:45</span> <span style="color:var(--green)">INFO</span>
+                        Data backup proceeds scheduled for AT-04 UTC.</div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="admin-footer">
+                <div class="admin-footer-brand"><span>Humsafar AI Enterprise Suite</span></div>
+                <div class="admin-footer-links">
+                    <a href="#">Privacy</a><a href="#">Terms</a><a href="#">API Docs</a><a href="#">System Status</a>
+                </div>
+                <div class="admin-footer-copy">© 2024 Humsafar AI Governance Council. All rights reserved.</div>
+            </div>
+        </section>
+
+        <!-- ==================== PAGE: REPORTS ==================== -->
+        <section class="admin-page" data-page="reports" id="page-reports">
+            <div class="page-topbar">
+                <div>
+                    <div class="page-title">Reports & Abuse Center</div>
+                    <div class="page-subtitle">Abuse reports, support issues, and moderation follow-up.</div>
+                </div>
+                <div class="topbar-actions">
+                    <button class="btn-secondary" type="button">
+                        <span class="material-symbols-outlined" style="font-size:16px">filter_alt</span>
+                        Advanced Filters
+                    </button>
+                    <button class="btn-primary" type="button">
+                        <span class="material-symbols-outlined" style="font-size:16px">download</span>
+                        Export Queue
+                    </button>
+                </div>
+            </div>
+
+            <div class="stat-cards-row">
+                <div class="stat-card">
+                    <div class="stat-icon-row">
+                        <div class="stat-icon" style="background:var(--red-light);color:var(--red)"><span
+                                class="material-symbols-outlined">person_off</span></div>
+                        <span class="stat-trend down" id="rpt-fake-trend">0</span>
+                    </div>
+                    <div class="stat-label">Fake Profiles</div>
+                    <div class="stat-value" id="rpt-fake-count">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon-row">
+                        <div class="stat-icon" style="background:var(--amber-light);color:var(--amber)"><span
+                                class="material-symbols-outlined">warning</span></div>
+                    </div>
+                    <div class="stat-label">Harassment</div>
+                    <div class="stat-value" id="rpt-harassment-count">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon-row">
+                        <div class="stat-icon" style="background:rgba(41,128,185,0.1);color:var(--blue)"><span
+                                class="material-symbols-outlined">image_not_supported</span></div>
+                    </div>
+                    <div class="stat-label">Media Violations</div>
+                    <div class="stat-value" id="rpt-media-count">0</div>
+                </div>
+                <div class="stat-card" style="border-color:rgba(192,57,43,0.2)">
+                    <div class="stat-icon-row">
+                        <div class="stat-icon" style="background:var(--red-light);color:var(--red)"><span
+                                class="material-symbols-outlined">gavel</span></div>
+                        <span class="badge critical">Urgent</span>
+                    </div>
+                    <div class="stat-label">Financial Fraud</div>
+                    <div class="stat-value" id="rpt-fraud-count">0</div>
+                </div>
+            </div>
+
+            <!-- Alert Banner -->
+            <div class="alert-banner warning" id="reports-alert-banner" style="display:none">
+                <div class="alert-banner-icon"><span class="material-symbols-outlined">shield</span></div>
+                <div class="alert-banner-content">
+                    <div class="alert-banner-label">Global Policy Alert</div>
+                    <div class="alert-banner-title">Suspicious Activity Detected</div>
+                    <div class="alert-banner-text" id="reports-alert-text">Monitoring for unusual patterns across the
+                        platform.</div>
+                </div>
+            </div>
+
+            <!-- Reports Table -->
+            <div class="table-wrap">
+                <div class="table-header">
+                    <div class="table-header-left">
+                        <h3>Active Investigations Queue</h3>
+                    </div>
+                </div>
+                <div class="table-scroll">
+                    <table class="data-table" id="reports-table">
+                        <thead>
+                            <tr>
+                                <th>Reported User</th>
+                                <th>Reason</th>
+                                <th>Reporter</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="reports-tbody">
+                            <tr>
+                                <td colspan="6" style="padding:30px;text-align:center;color:var(--text-muted)">Loading
+                                    reports...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- AI Content Auditing -->
+            <div class="card" style="margin:0 32px 32px">
+                <div class="card-body" style="text-align:center;padding:40px 30px">
+                    <span class="material-symbols-outlined"
+                        style="font-size:40px;color:var(--gold);display:block;margin-bottom:12px">smart_toy</span>
+                    <h3 style="font-family:var(--font-display);font-size:1.2rem;margin-bottom:8px">AI-Driven Content
+                        Auditing Status</h3>
+                    <p style="font-size:0.84rem;color:var(--text-muted);max-width:500px;margin:0 auto;line-height:1.6">
+                        Humsafar AI is currently screening media assets and chat logs in the background using Vision-L
+                        and NLU models. No significant policy violations detected in the current batch.</p>
+                </div>
+            </div>
+        </section>
+
     </main>
+
+    <!-- SIDEBAR OVERLAY -->
+    <div class="sidebar-overlay" id="admin-sidebar-overlay"></div>
 
     <script src="/js/admin.js"></script>
 </body>
+
 </html>

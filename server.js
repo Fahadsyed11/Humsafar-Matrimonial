@@ -9,10 +9,6 @@ const PORT = process.env.PORT || 3000;
 // Trust proxy headers when deployed behind a load balancer or reverse proxy
 app.set('trust proxy', 1);
 
-// ===== Initialize Database =====
-getDB();
-console.log('📦 Database initialized');
-
 // ===== Middleware =====
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -32,6 +28,7 @@ app.use(session({
 
 // Static files
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/uploads', express.static(path.join(__dirname, 'public', 'uploads')));
 
 // ===== API Routes =====
 const authRoutes = require('./routes/auth');
@@ -67,6 +64,14 @@ app.get('/admin/dashboard', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'admin-dashboard.html'));
 });
 
+app.get('/complete-profile', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'complete-profile.html'));
+});
+
+app.get('/dashboard', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'dashboard.html'));
+});
+
 // ===== Route Fallback =====
 app.get('*', (req, res) => {
     if (req.path.startsWith('/api/')) {
@@ -75,12 +80,23 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// ===== Start Server =====
-app.listen(PORT, () => {
-    console.log(`\n🚀 Humsafar server running at http://localhost:${PORT}`);
-    console.log(`   📄 Home:      http://localhost:${PORT}`);
-    console.log(`   🔐 Login:     http://localhost:${PORT}/login`);
-    console.log(`   📝 Sign Up:   http://localhost:${PORT}/signup`);
-    console.log(`   ⚙️  Admin:     http://localhost:${PORT}/admin`);
-    console.log(`   📋 Terms:     http://localhost:${PORT}/terms\n`);
-});
+// ===== Bootstrap: init DB then start server =====
+(async () => {
+    try {
+        await getDB();
+        console.log('📦 Database initialized');
+
+        app.listen(PORT, () => {
+            console.log(`\n🚀 Humsafar server running at http://localhost:${PORT}`);
+            console.log(`   📄 Home:      http://localhost:${PORT}`);
+            console.log(`   🔐 Login:     http://localhost:${PORT}/login`);
+            console.log(`   📝 Sign Up:   http://localhost:${PORT}/signup`);
+            console.log(`   ⚙️  Admin:     http://localhost:${PORT}/admin`);
+            console.log(`   📋 Terms:     http://localhost:${PORT}/terms\n`);
+        });
+    } catch (err) {
+        console.error('❌ Failed to initialize database:', err);
+        process.exit(1);
+    }
+})();
+

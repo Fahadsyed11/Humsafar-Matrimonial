@@ -1,0 +1,1517 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Humsafar Dashboard — Your personalized matchmaking hub.">
+    <title>Dashboard — Humsafar</title>
+    <link rel="icon" type="image/png" href="/assets/logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+
+<body class="dashboard-body">
+
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="/" class="sidebar-logo">
+                <img src="/assets/logo.png" alt="Humsafar" class="sidebar-logo-img">
+                <div class="sidebar-logo-text">
+                    <span class="sidebar-brand">Humsafar</span>
+                    <span class="sidebar-tagline">User Profile</span>
+                </div>
+            </a>
+        </div>
+
+        <!-- User Mini Card -->
+        <div class="sidebar-user-card" id="sidebar-user-card">
+            <div class="sidebar-avatar" id="sidebar-avatar">
+                <span id="sidebar-initials">HS</span>
+            </div>
+            <div class="sidebar-user-info">
+                <span class="sidebar-user-name" id="sidebar-user-name">Loading...</span>
+                <span class="sidebar-user-badge">Premium Member</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul>
+                <li>
+                    <a href="#" class="sidebar-nav-item" data-page="my-profile" id="nav-my-profile">
+                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                            <circle cx="12" cy="7" r="4" />
+                        </svg>
+                        <span>My Profile</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="sidebar-nav-item" data-page="search" id="nav-search">
+                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="11" cy="11" r="8" />
+                            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                        </svg>
+                        <span>Search Profiles</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="sidebar-nav-item" data-page="messages" id="nav-messages">
+                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                        </svg>
+                        <span>Messages</span>
+                        <span class="nav-badge" id="msg-badge">3</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="sidebar-nav-item" data-page="matches" id="nav-matches">
+                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path
+                                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                        </svg>
+                        <span>My Matches</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="sidebar-nav-item" data-page="swipe" id="nav-swipe">
+                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M7 16V4m0 0L3 8m4-4l4 4" />
+                            <path d="M17 8v12m0 0l4-4m-4 4l-4-4" />
+                        </svg>
+                        <span>Swipe &amp; Discover</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="sidebar-nav-item" data-page="settings" id="nav-settings">
+                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="3" />
+                            <path
+                                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
+                        </svg>
+                        <span>Settings</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="sidebar-nav-item" data-page="premium" id="nav-premium">
+                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <polygon
+                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                        </svg>
+                        <span>Premium</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Premium Upgrade Banner -->
+        <div class="sidebar-premium-box" id="sidebar-premium-box">
+            <div class="premium-icon">✦</div>
+            <p class="premium-text">Upgrade to <strong>Premium</strong></p>
+            <p class="premium-subtext">Unlock unlimited messaging &amp; elite features.</p>
+            <a href="#" class="premium-btn" id="upgrade-btn" data-page="premium">Upgrade to Elite</a>
+        </div>
+
+        <!-- Sidebar Footer -->
+        <div class="sidebar-footer">
+            <button class="sidebar-logout-btn" id="sidebar-logout">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                    <polyline points="16 17 21 12 16 7" />
+                    <line x1="21" y1="12" x2="9" y2="12" />
+                </svg>
+                <span>Logout</span>
+            </button>
+        </div>
+    </aside>
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- ===== MOBILE HEADER ===== -->
+    <header class="mobile-header" id="mobile-header">
+        <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Open menu">
+            <span></span><span></span><span></span>
+        </button>
+        <a href="/" class="mobile-logo">Humsafar</a>
+        <div class="mobile-header-actions">
+            <button class="mobile-notif-btn" id="mobile-notif-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20">
+                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                    <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                </svg>
+                <span class="mobile-badge">3</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="dashboard-main" id="dashboard-main">
+
+        <!-- ======= MY PROFILE PAGE ======= -->
+        <section class="dash-page active" id="page-my-profile">
+            <!-- TOP BAR -->
+            <div class="page-topbar">
+                <div class="topbar-left">
+                    <h1 class="page-title" id="profile-page-title">My Profile</h1>
+                </div>
+                <div class="topbar-right">
+                    <button class="topbar-icon-btn" id="notif-btn-profile" aria-label="Notifications">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                            <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                        </svg>
+                    </button>
+                    <button class="topbar-icon-btn" aria-label="Bookmarks">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
+                        </svg>
+                    </button>
+                    <a href="#" class="topbar-help">Help</a>
+                    <div class="topbar-avatar" id="topbar-avatar">
+                        <span id="topbar-initials">HS</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROFILE HERO BANNER -->
+            <div class="profile-hero">
+                <div class="profile-hero-bg"></div>
+                <div class="profile-hero-content">
+                    <div class="profile-photo-wrapper">
+                        <div class="profile-photo" id="main-profile-photo">
+                            <span id="main-profile-initials">HS</span>
+                        </div>
+                        <span class="verified-badge" title="Verified Profile">✓ Verified</span>
+                    </div>
+                    <div class="profile-hero-info">
+                        <h2 class="profile-hero-name" id="profile-hero-name">Loading...</h2>
+                        <div class="profile-hero-meta" id="profile-hero-meta">
+                            <span id="profile-age-prof">—</span>
+                            <span class="meta-dot">•</span>
+                            <span id="profile-city-prof">—</span>
+                        </div>
+                    </div>
+                    <div class="profile-hero-actions">
+                        <button class="btn-edit-profile" id="btn-edit-profile">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="14"
+                                height="14">
+                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+                            </svg>
+                            Edit Profile
+                        </button>
+                        <button class="btn-preview-profile">Preview</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROFILE STATS ROW -->
+            <div class="profile-stats-row">
+                <div class="profile-stat-item">
+                    <span class="pstat-label">VIEWS</span>
+                    <span class="pstat-value">1,240</span>
+                </div>
+                <div class="profile-stat-item">
+                    <span class="pstat-label">INTERESTS</span>
+                    <span class="pstat-value">84</span>
+                </div>
+                <div class="profile-stat-item">
+                    <span class="pstat-label">MATCHED</span>
+                    <span class="pstat-value" id="pstat-matches">12</span>
+                </div>
+            </div>
+
+            <!-- PROFILE BODY -->
+            <div class="profile-body">
+                <div class="profile-main-col">
+                    <!-- About -->
+                    <div class="profile-section-card">
+                        <h3 class="section-card-title">About Me</h3>
+                        <p class="about-text" id="profile-about-text">Complete your profile to add a description. Tell
+                            potential matches about yourself, your values, and what you're looking for in a life
+                            partner.</p>
+                    </div>
+
+                    <!-- Personal Info -->
+                    <div class="profile-section-card two-col-info">
+                        <div class="info-col">
+                            <h4 class="info-col-title">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="14"
+                                    height="14">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                                    <circle cx="12" cy="7" r="4" />
+                                </svg>
+                                Personal Info
+                            </h4>
+                            <div class="info-grid">
+                                <span class="info-key">RELIGION</span><span class="info-val" id="p-religion">—</span>
+                                <span class="info-key">MOTHER TONGUE</span><span class="info-val"
+                                    id="p-language">—</span>
+                                <span class="info-key">MARITAL STATUS</span><span class="info-val"
+                                    id="p-marital">—</span>
+                                <span class="info-key">HEIGHT</span><span class="info-val" id="p-height">—</span>
+                                <span class="info-key">COMMUNITY</span><span class="info-val" id="p-community">—</span>
+                            </div>
+                        </div>
+                        <div class="info-col">
+                            <h4 class="info-col-title">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="14"
+                                    height="14">
+                                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+                                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+                                </svg>
+                                Career &amp; Education
+                            </h4>
+                            <div class="info-grid">
+                                <span class="info-key">HIGHEST DEGREE</span><span class="info-val"
+                                    id="p-education">—</span>
+                                <span class="info-key">COLLEGE</span><span class="info-val" id="p-college">—</span>
+                                <span class="info-key">EMPLOYER</span><span class="info-val" id="p-employer">—</span>
+                                <span class="info-key">INCOME RANGE</span><span class="info-val" id="p-income">—</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Family & Lifestyle -->
+                    <div class="profile-section-card two-col-info">
+                        <div class="info-col">
+                            <h4 class="info-col-title">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="14"
+                                    height="14">
+                                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                                    <polyline points="9 22 9 12 15 12 15 22" />
+                                </svg>
+                                Family Background
+                            </h4>
+                            <div class="info-grid">
+                                <span class="info-key">FAMILY TYPE</span><span class="info-val"
+                                    id="p-family-type">—</span>
+                                <span class="info-key">FATHER'S PROFESSION</span><span class="info-val"
+                                    id="p-father">—</span>
+                                <span class="info-key">MOTHER'S PROFESSION</span><span class="info-val"
+                                    id="p-mother">—</span>
+                                <span class="info-key">SIBLINGS</span><span class="info-val" id="p-siblings">—</span>
+                            </div>
+                        </div>
+                        <div class="info-col">
+                            <h4 class="info-col-title">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="14"
+                                    height="14">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <path d="M12 8v4l3 3" />
+                                </svg>
+                                Lifestyle &amp; Hobbies
+                            </h4>
+                            <div class="info-grid">
+                                <span class="info-key">DIET</span><span class="info-val" id="p-diet">—</span>
+                                <span class="info-key">DRINKING</span><span class="info-val" id="p-drinking">No /
+                                    No</span>
+                            </div>
+                            <div class="hobbies-tags" id="p-hobbies">
+                                <span class="hobby-tag">Add hobbies</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Partner Preferences -->
+                    <div class="profile-section-card">
+                        <h4 class="info-col-title" style="margin-bottom:16px;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="14"
+                                height="14">
+                                <path
+                                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                            </svg>
+                            Partner Preferences
+                        </h4>
+                        <div class="partner-pref-grid">
+                            <div class="pref-col">
+                                <span class="pref-heading">BASICS</span>
+                                <div class="pref-list" id="pref-basics">
+                                    <span>Age: 22-35 years</span>
+                                    <span>Height: 5'3" and above</span>
+                                    <span>Status: Never Married</span>
+                                </div>
+                            </div>
+                            <div class="pref-col">
+                                <span class="pref-heading">BACKGROUND</span>
+                                <div class="pref-list" id="pref-bg">
+                                    <span>Religion: Islam / Sunni</span>
+                                    <span>Language: Urdu / Punjabi</span>
+                                    <span>Location: UK / Europe</span>
+                                </div>
+                            </div>
+                            <div class="pref-col">
+                                <span class="pref-heading">EDUCATION</span>
+                                <div class="pref-list" id="pref-edu">
+                                    <span>Degree: Masters or Higher</span>
+                                    <span>Profession: Professional / Academic</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SIDEBAR RIGHT: AI Insights + Potential Matches -->
+                <div class="profile-side-col">
+                    <!-- AI Insights -->
+                    <div class="ai-insights-card">
+                        <div class="ai-insights-header">
+                            <span class="ai-icon">✦</span>
+                            <span>AI Insights</span>
+                        </div>
+                        <p class="ai-subtitle">Based on your recent activity and matching algorithm</p>
+                        <div class="ai-metric">
+                            <div class="ai-metric-label">
+                                <span>PROFILE STRENGTH</span>
+                                <span class="ai-metric-pct" id="ai-strength-pct">72%</span>
+                            </div>
+                            <div class="ai-progress-bar">
+                                <div class="ai-progress-fill" id="ai-strength-bar" style="width:72%"></div>
+                            </div>
+                        </div>
+                        <div class="ai-metric" style="margin-top:8px;">
+                            <div class="ai-metric-label">
+                                <span>ATTRACTIVENESS SCORE</span>
+                                <span class="ai-score-badge">HIGH</span>
+                            </div>
+                        </div>
+                        <div class="ai-match-score">
+                            <span class="ai-score-num">9.4</span><span class="ai-score-denom">/10</span>
+                            <p class="ai-score-desc">Excellent compatibility with your matches</p>
+                        </div>
+                        <div class="ai-recommendations">
+                            <span class="ai-rec-title">✦ Recommendations</span>
+                            <div class="ai-rec-item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="12"
+                                    height="12">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <line x1="12" y1="8" x2="12" y2="12" />
+                                    <line x1="12" y1="16" x2="12.01" y2="16" />
+                                </svg>
+                                Add a profile photo to increase engagement by 78%.
+                            </div>
+                            <div class="ai-rec-item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="12"
+                                    height="12">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <line x1="12" y1="8" x2="12" y2="12" />
+                                    <line x1="12" y1="16" x2="12.01" y2="16" />
+                                </svg>
+                                Complete your hobbies section to improve match quality.
+                            </div>
+                        </div>
+                        <button class="ai-recalculate-btn">Recalculate Scores</button>
+                    </div>
+
+                    <!-- Potential Matches -->
+                    <div class="potential-matches-card">
+                        <h4 class="pm-title">Potential Matches</h4>
+                        <div class="pm-list" id="pm-list">
+                            <div class="pm-item">
+                                <div class="pm-avatar">ZR</div>
+                                <div class="pm-info">
+                                    <span class="pm-name">Zainab R.</span>
+                                    <span class="pm-desc">Professional • 26 yrs</span>
+                                </div>
+                                <button class="pm-like-btn" aria-label="Like">♡</button>
+                            </div>
+                            <div class="pm-item">
+                                <div class="pm-avatar" style="background: linear-gradient(135deg, #c4627a, #8b2252);">AK
+                                </div>
+                                <div class="pm-info">
+                                    <span class="pm-name">Amara K.</span>
+                                    <span class="pm-desc">Doctor • 24 yrs</span>
+                                </div>
+                                <button class="pm-like-btn" aria-label="Like">♡</button>
+                            </div>
+                        </div>
+                        <a href="#" class="pm-view-all" data-page="matches">View All Suggestions</a>
+                    </div>
+
+                    <!-- Location -->
+                    <div class="location-card">
+                        <div class="location-map-placeholder">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28"
+                                height="28" style="color: var(--dash-gold)">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                                <circle cx="12" cy="10" r="3" />
+                            </svg>
+                        </div>
+                        <p class="location-text" id="location-text">Based in —</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======= SEARCH PROFILES PAGE ======= -->
+        <section class="dash-page" id="page-search">
+            <div class="page-topbar">
+                <div class="topbar-left">
+                    <h1 class="page-title">Discover Your Life Partner</h1>
+                    <p class="page-subtitle">Refine your search to find matches that align perfectly with your values,
+                        aspirations, and lifestyle.</p>
+                </div>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="search-bar-wrapper">
+                <div class="search-input-group">
+                    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="11" cy="11" r="8" />
+                        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                    </svg>
+                    <input type="text" id="search-input" placeholder="Search by name, profession, education, city..."
+                        class="search-input">
+                    <button class="search-submit-btn" id="search-submit-btn">Search</button>
+                </div>
+                <div class="search-meta-row">
+                    <button class="advanced-filters-btn" id="advanced-filters-btn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="14"
+                            height="14">
+                            <line x1="4" y1="21" x2="4" y2="14" />
+                            <line x1="4" y1="10" x2="4" y2="3" />
+                            <line x1="12" y1="21" x2="12" y2="12" />
+                            <line x1="12" y1="8" x2="12" y2="3" />
+                            <line x1="20" y1="21" x2="20" y2="16" />
+                            <line x1="20" y1="12" x2="20" y2="3" />
+                            <line x1="1" y1="14" x2="7" y2="14" />
+                            <line x1="9" y1="8" x2="15" y2="8" />
+                            <line x1="17" y1="16" x2="23" y2="16" />
+                        </svg>
+                        Advanced Filters
+                    </button>
+                    <div class="sort-by-group">
+                        <span class="sort-label">SORT BY</span>
+                        <select class="sort-select" id="sort-select">
+                            <option>Highest Compatibility</option>
+                            <option>Newest Profiles</option>
+                            <option>Active Recently</option>
+                            <option>Age: Youngest First</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category Pills -->
+            <div class="category-section">
+                <h3 class="category-heading">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="16"
+                        height="16">
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M12 8v4l3 3" />
+                    </svg>
+                    Suggested Categories
+                </h3>
+                <div class="category-pills">
+                    <button class="cat-pill active" data-cat="compatible">🔥 Highly Compatible</button>
+                    <button class="cat-pill" data-cat="ai">⭐ AI Recommended</button>
+                    <button class="cat-pill" data-cat="nearby">📍 Nearby Matches</button>
+                    <button class="cat-pill" data-cat="education">🎓 Same Education</button>
+                    <button class="cat-pill" data-cat="profession">💼 Same Profession</button>
+                </div>
+            </div>
+
+            <!-- Profiles Grid -->
+            <div class="discover-section">
+                <div class="discover-header">
+                    <h3 class="discover-title">Discover Profiles <span class="discover-count" id="discover-count">(142
+                            Results)</span></h3>
+                </div>
+                <div class="profiles-grid" id="profiles-grid">
+                    <!-- Profile Cards rendered by JS -->
+                </div>
+                <div class="load-more-wrapper">
+                    <button class="load-more-btn" id="load-more-btn">Load More Profiles</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======= MESSAGES PAGE ======= -->
+        <section class="dash-page" id="page-messages">
+            <div class="messages-layout">
+                <!-- Conversations List -->
+                <div class="conversations-panel" id="conversations-panel">
+                    <div class="conv-panel-header">
+                        <h2 class="conv-panel-title">Messages</h2>
+                    </div>
+                    <div class="conv-search-wrapper">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                            class="conv-search-icon">
+                            <circle cx="11" cy="11" r="8" />
+                            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                        </svg>
+                        <input type="text" placeholder="Search conversations..." class="conv-search-input"
+                            id="conv-search">
+                    </div>
+                    <div class="conv-list" id="conv-list">
+                        <!-- Loaded by JS -->
+                    </div>
+                </div>
+
+                <!-- Chat Area -->
+                <div class="chat-panel" id="chat-panel">
+                    <div class="chat-empty-state" id="chat-empty-state">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48"
+                            height="48" style="color: var(--dash-border)">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                        </svg>
+                        <p>Select a conversation to start chatting</p>
+                    </div>
+                    <div class="chat-active" id="chat-active" style="display:none;">
+                        <!-- Chat Header -->
+                        <div class="chat-header" id="chat-header">
+                            <div class="chat-header-user">
+                                <div class="chat-header-avatar" id="chat-header-avatar">SA</div>
+                                <div class="chat-header-info">
+                                    <span class="chat-header-name" id="chat-header-name">Sarah Ahmed</span>
+                                    <span class="chat-header-status" id="chat-header-status">Online now • 92%
+                                        Match</span>
+                                </div>
+                            </div>
+                            <div class="chat-header-actions">
+                                <button class="chat-action-btn" aria-label="Call">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                        width="18" height="18">
+                                        <path
+                                            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.36C1.6 2.18 2.39 1 3.61 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.69A16 16 0 0 0 14 15.81l1.06-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+                                    </svg>
+                                </button>
+                                <button class="chat-action-btn" aria-label="Video">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                        width="18" height="18">
+                                        <polygon points="23 7 16 12 23 17 23 7" />
+                                        <rect x="1" y="5" width="15" height="14" rx="2" ry="2" />
+                                    </svg>
+                                </button>
+                                <button class="chat-action-btn" aria-label="More">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                        width="18" height="18">
+                                        <circle cx="12" cy="5" r="1" />
+                                        <circle cx="12" cy="12" r="1" />
+                                        <circle cx="12" cy="19" r="1" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Messages -->
+                        <div class="chat-messages" id="chat-messages">
+                            <!-- Rendered by JS -->
+                        </div>
+
+                        <!-- Conversation Starters -->
+                        <div class="chat-starters" id="chat-starters">
+                            <span class="starters-label">✦ STARTERS</span>
+                            <button class="starter-chip">"What inspired you to choose your profession?"</button>
+                            <button class="starter-chip">"What qualities do you value most in a partner?"</button>
+                        </div>
+
+                        <!-- Input -->
+                        <div class="chat-input-area">
+                            <button class="chat-input-btn" aria-label="Attach image">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18"
+                                    height="18">
+                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                                    <circle cx="8.5" cy="8.5" r="1.5" />
+                                    <polyline points="21 15 16 10 5 21" />
+                                </svg>
+                            </button>
+                            <button class="chat-input-btn" aria-label="Emoji">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18"
+                                    height="18">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <path d="M8 14s1.5 2 4 2 4-2 4-2" />
+                                    <line x1="9" y1="9" x2="9.01" y2="9" />
+                                    <line x1="15" y1="9" x2="15.01" y2="9" />
+                                </svg>
+                            </button>
+                            <input type="text" id="chat-input" placeholder="Type a message..." class="chat-input">
+                            <button class="chat-send-btn" id="chat-send-btn" aria-label="Send">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18"
+                                    height="18">
+                                    <line x1="22" y1="2" x2="11" y2="13" />
+                                    <polygon points="22 2 15 22 11 13 2 9 22 2" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======= MY MATCHES PAGE ======= -->
+        <section class="dash-page" id="page-matches">
+            <div class="page-topbar">
+                <div class="topbar-left">
+                    <h1 class="page-title">My Matches</h1>
+                    <p class="page-subtitle">Manage your connections, interactions, interests, and relationship journey.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Matches Stats -->
+            <div class="matches-stats-row">
+                <div class="match-stat-box">
+                    <span class="msb-label">TOTAL MATCHES</span>
+                    <span class="msb-value">42</span>
+                </div>
+                <div class="match-stat-box">
+                    <span class="msb-label">INTERESTS SENT</span>
+                    <span class="msb-value">28</span>
+                </div>
+                <div class="match-stat-box">
+                    <span class="msb-label">INTERESTS ACCEPTED</span>
+                    <span class="msb-value">15</span>
+                </div>
+                <div class="match-stat-box">
+                    <span class="msb-label">ACTIVE CONVERSATIONS</span>
+                    <span class="msb-value">11</span>
+                </div>
+                <div class="match-stat-box">
+                    <span class="msb-label">BLOCKED USERS</span>
+                    <span class="msb-value">3</span>
+                </div>
+                <div class="match-stat-box">
+                    <span class="msb-label">PROFILE VIEWS</span>
+                    <span class="msb-value">127</span>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <div class="matches-tabs">
+                <button class="match-tab active" data-tab="current">Current Matches</button>
+                <button class="match-tab" data-tab="history">Match History</button>
+                <button class="match-tab" data-tab="communication">Communication History</button>
+                <button class="match-tab" data-tab="activity">Activity History</button>
+                <button class="match-tab" data-tab="blocked">Blocked Users</button>
+                <button class="match-tab" data-tab="premium-insights">Premium Insights</button>
+            </div>
+
+            <!-- Matches Grid -->
+            <div class="matches-grid" id="matches-grid">
+                <!-- Rendered by JS -->
+            </div>
+
+            <!-- AI Notification Toast -->
+            <div class="ai-notif-toast" id="ai-notif-toast">
+                <span class="ai-notif-icon">✦RK</span>
+                <div class="ai-notif-content">
+                    <span class="ai-notif-title">New AI Match!</span>
+                    <span class="ai-notif-text">We found a 96% match based on your recent preferences.</span>
+                </div>
+                <button class="ai-notif-close" id="ai-notif-close" aria-label="Close">✕</button>
+            </div>
+        </section>
+
+        <!-- ======= SWIPE & DISCOVER PAGE ======= -->
+        <section class="dash-page" id="page-swipe">
+            <div class="page-topbar">
+                <div class="topbar-left">
+                    <h1 class="page-title">Swipe Discovery</h1>
+                </div>
+                <div class="topbar-right">
+                    <button class="topbar-icon-btn" aria-label="Notifications">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                            <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                        </svg>
+                    </button>
+                    <button class="topbar-icon-btn" aria-label="Bookmarks">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
+                        </svg>
+                    </button>
+                    <div class="topbar-avatar" id="swipe-topbar-avatar"><span id="swipe-topbar-initials">HS</span></div>
+                </div>
+            </div>
+
+            <div class="swipe-layout">
+                <!-- Swipe Card Area -->
+                <div class="swipe-card-area">
+                    <div class="swipe-card-wrapper" id="swipe-card-wrapper">
+                        <!-- Card rendered by JS -->
+                    </div>
+                    <!-- Swipe Actions -->
+                    <div class="swipe-actions">
+                        <button class="swipe-action-btn swipe-pass" id="swipe-pass" aria-label="Pass">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="22"
+                                height="22">
+                                <line x1="18" y1="6" x2="6" y2="18" />
+                                <line x1="6" y1="6" x2="18" y2="18" />
+                            </svg>
+                        </button>
+                        <button class="swipe-action-btn swipe-request" id="swipe-request">REQUEST DETAILS</button>
+                        <button class="swipe-action-btn swipe-like" id="swipe-like" aria-label="Like">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22"
+                                height="22">
+                                <path
+                                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                            </svg>
+                        </button>
+                    </div>
+                    <button class="swipe-undo-btn" id="swipe-undo">↩ Undo Last Swipe</button>
+                </div>
+
+                <!-- Discovery Stats -->
+                <div class="swipe-sidebar">
+                    <div class="swipe-stats-card">
+                        <h3 class="swipe-stats-title">Discovery Stats</h3>
+                        <div class="swipe-stat-row">
+                            <span class="swipe-stat-label">Profiles Viewed</span>
+                            <span class="swipe-stat-val" id="sw-viewed">12</span>
+                        </div>
+                        <div class="swipe-stat-row">
+                            <span class="swipe-stat-label">Likes Sent</span>
+                            <span class="swipe-stat-val" id="sw-likes">5</span>
+                        </div>
+                        <div class="swipe-stat-row">
+                            <span class="swipe-stat-label">Matches Made</span>
+                            <span class="swipe-stat-val" id="sw-matches">2</span>
+                        </div>
+                        <div class="swipe-stat-row">
+                            <span class="swipe-stat-label">Requests Sent</span>
+                            <span class="swipe-stat-val" id="sw-requests">1</span>
+                        </div>
+                        <div class="swipe-quote">"You're in the top 10% of active members today. Quality connections
+                            take time."</div>
+                    </div>
+
+                    <!-- AI Pick -->
+                    <div class="swipe-ai-pick">
+                        <span class="swipe-ai-label">TODAY'S AI PICK</span>
+                        <div class="swipe-ai-person" id="swipe-ai-person">
+                            <div class="swipe-ai-avatar">FA</div>
+                            <div class="swipe-ai-info">
+                                <span class="swipe-ai-name">Fatima Ali, 25</span>
+                                <span class="swipe-ai-role">Software Engineer</span>
+                            </div>
+                        </div>
+                        <button class="swipe-ai-view-btn">View Details</button>
+                    </div>
+
+                    <!-- Queue -->
+                    <div class="swipe-queue-card">
+                        <span class="queue-label">IN YOUR QUEUE</span>
+                        <div class="queue-list" id="queue-list">
+                            <div class="queue-item">
+                                <div class="queue-avatar" style="background: linear-gradient(135deg,#8b6914,#b8903d);">
+                                    ZS</div>
+                                <div class="queue-info">
+                                    <span class="queue-name">Zoya Siddiqui, 24</span>
+                                    <span class="queue-role">Architect • Mumbai</span>
+                                </div>
+                            </div>
+                            <div class="queue-item">
+                                <div class="queue-avatar" style="background: linear-gradient(135deg,#2d5a7b,#4a90c4);">
+                                    SB</div>
+                                <div class="queue-info">
+                                    <span class="queue-name">Sara Begum, 26</span>
+                                    <span class="queue-role">Teacher • Lucknow</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======= SETTINGS PAGE ======= -->
+        <section class="dash-page" id="page-settings">
+            <div class="settings-page-inner">
+                <!-- Settings Topbar -->
+                <div class="page-topbar">
+                    <div class="topbar-left">
+                        <h1 class="page-title">Settings</h1>
+                        <p class="page-subtitle">Manage your account, privacy, preferences, and security.</p>
+                    </div>
+                    <div class="topbar-right">
+                        <button class="topbar-icon-btn" aria-label="Notifications">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                                <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                            </svg>
+                        </button>
+                        <button class="topbar-icon-btn" aria-label="Favourites">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path
+                                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                            </svg>
+                        </button>
+                        <div class="topbar-avatar"><span id="settings-topbar-initials">HS</span></div>
+                    </div>
+                </div>
+
+                <!-- Settings Tabs -->
+                <div class="settings-tabs" id="settings-tabs">
+                    <button class="settings-tab active" data-stab="account">Account</button>
+                    <button class="settings-tab" data-stab="match-pref">Match Preferences</button>
+                    <button class="settings-tab" data-stab="notifications">Notifications</button>
+                    <button class="settings-tab" data-stab="privacy">Privacy &amp; Security</button>
+                </div>
+
+                <!-- ---- ACCOUNT TAB ---- -->
+                <div class="settings-tab-body active" id="stab-account">
+                    <div class="settings-two-col">
+                        <!-- Left: Personal Info form -->
+                        <div class="settings-form-col">
+                            <div class="settings-form-card">
+                                <h3 class="settings-form-heading">Personal Information</h3>
+                                <div class="settings-form-divider"></div>
+                                <div class="settings-form-grid">
+                                    <div class="sf-group">
+                                        <label class="sf-label">FULL NAME</label>
+                                        <input type="text" class="sf-input" id="sf-fullname"
+                                            placeholder="Your full name">
+                                    </div>
+                                    <div class="sf-group">
+                                        <label class="sf-label">EMAIL ADDRESS</label>
+                                        <input type="email" class="sf-input" id="sf-email"
+                                            placeholder="you@example.com">
+                                    </div>
+                                    <div class="sf-group">
+                                        <label class="sf-label">PHONE NUMBER</label>
+                                        <input type="tel" class="sf-input" id="sf-phone"
+                                            placeholder="+1 (555) 123-4567">
+                                    </div>
+                                    <div class="sf-group">
+                                        <label class="sf-label">DATE OF BIRTH</label>
+                                        <input type="date" class="sf-input" id="sf-dob">
+                                    </div>
+                                    <div class="sf-group">
+                                        <label class="sf-label">GENDER</label>
+                                        <select class="sf-input sf-select" id="sf-gender">
+                                            <option value="">Select</option>
+                                            <option>Male</option>
+                                            <option>Female</option>
+                                        </select>
+                                    </div>
+                                    <div class="sf-group">
+                                        <label class="sf-label">CITY</label>
+                                        <input type="text" class="sf-input" id="sf-city" placeholder="City">
+                                    </div>
+                                    <div class="sf-group">
+                                        <label class="sf-label">STATE</label>
+                                        <input type="text" class="sf-input" id="sf-state"
+                                            placeholder="State / Province">
+                                    </div>
+                                    <div class="sf-group">
+                                        <label class="sf-label">COUNTRY</label>
+                                        <input type="text" class="sf-input" id="sf-country" placeholder="Country">
+                                    </div>
+                                </div>
+
+                                <h3 class="settings-form-heading" style="margin-top:28px;">Preferences</h3>
+                                <div class="settings-form-divider"></div>
+                                <div class="settings-form-grid">
+                                    <div class="sf-group">
+                                        <label class="sf-label">LANGUAGE</label>
+                                        <select class="sf-input sf-select" id="sf-language">
+                                            <option>English</option>
+                                            <option>Urdu</option>
+                                            <option>Hindi</option>
+                                            <option>Arabic</option>
+                                        </select>
+                                    </div>
+                                    <div class="sf-group">
+                                        <label class="sf-label">PROFILE VISIBILITY</label>
+                                        <select class="sf-input sf-select" id="sf-visibility">
+                                            <option>Visible to Everyone</option>
+                                            <option>Members Only</option>
+                                            <option>Matches Only</option>
+                                            <option>Hidden</option>
+                                        </select>
+                                    </div>
+                                    <div class="sf-group">
+                                        <label class="sf-label">TIME ZONE</label>
+                                        <select class="sf-input sf-select" id="sf-timezone">
+                                            <option>UTC+0 (London)</option>
+                                            <option>UTC+5:30 (IST)</option>
+                                            <option>UTC+5 (PKT)</option>
+                                            <option>UTC-5 (EST)</option>
+                                        </select>
+                                    </div>
+                                    <div class="sf-group">
+                                        <label class="sf-label">DATE FORMAT</label>
+                                        <select class="sf-input sf-select" id="sf-dateformat">
+                                            <option>MM/DD/YYYY</option>
+                                            <option>DD/MM/YYYY</option>
+                                            <option>YYYY-MM-DD</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="settings-form-actions">
+                                    <button class="sf-save-btn" id="sf-save-btn">Save Changes</button>
+                                    <button class="sf-cancel-btn">Cancel</button>
+                                </div>
+
+                                <!-- Danger Zone -->
+                                <div class="settings-danger-zone-card">
+                                    <h4 class="danger-heading">Danger Zone</h4>
+                                    <div class="danger-row">
+                                        <div>
+                                            <span class="danger-label">Deactivate Account</span>
+                                            <span class="danger-sub">Temporarily hide your profile</span>
+                                        </div>
+                                        <button class="danger-btn-outline" id="btn-deactivate">Deactivate</button>
+                                    </div>
+                                    <div class="danger-row">
+                                        <div>
+                                            <span class="danger-label">Delete Account</span>
+                                            <span class="danger-sub">Permanently remove all your data</span>
+                                        </div>
+                                        <button class="danger-btn-fill" id="btn-delete-account">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right: Current Status Card -->
+                        <div class="settings-status-col">
+                            <div class="settings-status-card">
+                                <h4 class="status-card-title">Current Status</h4>
+                                <div class="status-row">
+                                    <span class="status-key">Verification</span>
+                                    <span class="status-val status-badge">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                            width="10" height="10">
+                                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                                        </svg>
+                                        LEVEL 2
+                                    </span>
+                                </div>
+                                <div class="status-row">
+                                    <span class="status-key">Matches</span>
+                                    <span class="status-val">12</span>
+                                </div>
+                                <div class="status-row">
+                                    <span class="status-key">Visibility</span>
+                                    <span class="status-val status-green">Visible</span>
+                                </div>
+                                <div class="status-row">
+                                    <span class="status-key">Notifications</span>
+                                    <span class="status-val status-green">Enabled</span>
+                                </div>
+                                <button class="verify-id-btn" onclick="navigateTo('premium')">Verify ID Now</button>
+                            </div>
+
+                            <!-- Password Security Card -->
+                            <div class="settings-status-card" style="margin-top:16px;">
+                                <h4 class="status-card-title">Password &amp; Security</h4>
+                                <div class="settings-item" style="padding:0;border:none;margin-bottom:12px;">
+                                    <div class="settings-item-info">
+                                        <span class="settings-item-label">Password</span>
+                                        <span class="settings-item-val">••••••••••</span>
+                                    </div>
+                                    <button class="settings-edit-btn">Change</button>
+                                </div>
+                                <div class="settings-toggle-item" style="padding:0;border:none;">
+                                    <div>
+                                        <span class="settings-item-label" style="display:block;">Two-Factor Auth</span>
+                                        <span style="font-size:0.7rem;color:var(--dash-text-muted);">Extra security for
+                                            your account</span>
+                                    </div>
+                                    <label class="toggle-switch"><input type="checkbox" id="toggle-2fa"><span
+                                            class="toggle-slider"></span></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ---- MATCH PREFERENCES TAB ---- -->
+                <div class="settings-tab-body" id="stab-match-pref">
+                    <div class="settings-form-card" style="max-width:700px;">
+                        <h3 class="settings-form-heading">Partner Preferences</h3>
+                        <div class="settings-form-divider"></div>
+                        <div class="settings-form-grid">
+                            <div class="sf-group">
+                                <label class="sf-label">AGE RANGE (MIN)</label>
+                                <input type="number" class="sf-input" placeholder="22" min="18" max="65">
+                            </div>
+                            <div class="sf-group">
+                                <label class="sf-label">AGE RANGE (MAX)</label>
+                                <input type="number" class="sf-input" placeholder="35" min="18" max="65">
+                            </div>
+                            <div class="sf-group">
+                                <label class="sf-label">PREFERRED RELIGION</label>
+                                <select class="sf-input sf-select">
+                                    <option>Any</option>
+                                    <option>Muslim</option>
+                                    <option>Hindu</option>
+                                    <option>Christian</option>
+                                    <option>Sikh</option>
+                                </select>
+                            </div>
+                            <div class="sf-group">
+                                <label class="sf-label">MARITAL STATUS</label>
+                                <select class="sf-input sf-select">
+                                    <option>Never Married</option>
+                                    <option>Divorced</option>
+                                    <option>Widowed</option>
+                                    <option>Any</option>
+                                </select>
+                            </div>
+                            <div class="sf-group">
+                                <label class="sf-label">MINIMUM EDUCATION</label>
+                                <select class="sf-input sf-select">
+                                    <option>Any</option>
+                                    <option>Graduate</option>
+                                    <option>Post Graduate</option>
+                                    <option>Doctorate</option>
+                                </select>
+                            </div>
+                            <div class="sf-group">
+                                <label class="sf-label">PREFERRED LOCATION</label>
+                                <input type="text" class="sf-input" placeholder="UK, USA, Canada...">
+                            </div>
+                            <div class="sf-group sf-group-full">
+                                <label class="sf-label">HEIGHT RANGE</label>
+                                <div style="display:flex;gap:12px;">
+                                    <select class="sf-input sf-select">
+                                        <option>5'0"</option>
+                                        <option>5'2"</option>
+                                        <option selected>5'3"</option>
+                                        <option>5'5"</option>
+                                    </select>
+                                    <span
+                                        style="display:flex;align-items:center;color:var(--dash-text-muted);font-size:0.85rem;">to</span>
+                                    <select class="sf-input sf-select">
+                                        <option>5'8"</option>
+                                        <option>5'10"</option>
+                                        <option selected>6'0"</option>
+                                        <option>6'2"</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="settings-form-actions">
+                            <button class="sf-save-btn">Save Preferences</button>
+                            <button class="sf-cancel-btn">Reset to Default</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ---- NOTIFICATIONS TAB ---- -->
+                <div class="settings-tab-body" id="stab-notifications">
+                    <div class="settings-form-card" style="max-width:700px;">
+                        <h3 class="settings-form-heading">Notification Settings</h3>
+                        <div class="settings-form-divider"></div>
+
+                        <div class="notif-group">
+                            <span class="notif-group-title">MATCHES &amp; CONNECTIONS</span>
+                            <div class="settings-toggle-item">
+                                <div>
+                                    <span class="settings-item-label">New match notifications</span>
+                                    <span class="settings-toggle-desc">Get notified when someone matches with you</span>
+                                </div>
+                                <label class="toggle-switch"><input type="checkbox" id="toggle-notif-match"
+                                        checked><span class="toggle-slider"></span></label>
+                            </div>
+                            <div class="settings-toggle-item">
+                                <div>
+                                    <span class="settings-item-label">Interest received</span>
+                                    <span class="settings-toggle-desc">When someone sends you an interest</span>
+                                </div>
+                                <label class="toggle-switch"><input type="checkbox" id="toggle-notif-interest"
+                                        checked><span class="toggle-slider"></span></label>
+                            </div>
+                            <div class="settings-toggle-item">
+                                <div>
+                                    <span class="settings-item-label">Profile views</span>
+                                    <span class="settings-toggle-desc">When someone views your profile</span>
+                                </div>
+                                <label class="toggle-switch"><input type="checkbox" id="toggle-notif-views"><span
+                                        class="toggle-slider"></span></label>
+                            </div>
+                        </div>
+
+                        <div class="notif-group">
+                            <span class="notif-group-title">MESSAGES</span>
+                            <div class="settings-toggle-item">
+                                <div>
+                                    <span class="settings-item-label">New messages</span>
+                                    <span class="settings-toggle-desc">Get notified for every new message</span>
+                                </div>
+                                <label class="toggle-switch"><input type="checkbox" id="toggle-notif-msg" checked><span
+                                        class="toggle-slider"></span></label>
+                            </div>
+                            <div class="settings-toggle-item">
+                                <div>
+                                    <span class="settings-item-label">Message read receipts</span>
+                                    <span class="settings-toggle-desc">When your message is read</span>
+                                </div>
+                                <label class="toggle-switch"><input type="checkbox" id="toggle-notif-read"><span
+                                        class="toggle-slider"></span></label>
+                            </div>
+                        </div>
+
+                        <div class="notif-group">
+                            <span class="notif-group-title">AI &amp; SYSTEM</span>
+                            <div class="settings-toggle-item">
+                                <div>
+                                    <span class="settings-item-label">AI match recommendations</span>
+                                    <span class="settings-toggle-desc">Weekly AI-curated match suggestions</span>
+                                </div>
+                                <label class="toggle-switch"><input type="checkbox" id="toggle-notif-ai" checked><span
+                                        class="toggle-slider"></span></label>
+                            </div>
+                            <div class="settings-toggle-item">
+                                <div>
+                                    <span class="settings-item-label">Email digests</span>
+                                    <span class="settings-toggle-desc">Weekly summary of your activity</span>
+                                </div>
+                                <label class="toggle-switch"><input type="checkbox" id="toggle-notif-email"><span
+                                        class="toggle-slider"></span></label>
+                            </div>
+                        </div>
+
+                        <div class="settings-form-actions">
+                            <button class="sf-save-btn">Save Notification Settings</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ---- PRIVACY & SECURITY TAB ---- -->
+                <div class="settings-tab-body" id="stab-privacy">
+                    <div class="settings-form-card" style="max-width:700px;">
+                        <h3 class="settings-form-heading">Privacy Controls</h3>
+                        <div class="settings-form-divider"></div>
+                        <div class="notif-group">
+                            <span class="notif-group-title">PROFILE VISIBILITY</span>
+                            <div class="settings-toggle-item">
+                                <div>
+                                    <span class="settings-item-label">Show profile to non-members</span>
+                                    <span class="settings-toggle-desc">Allow public access to your profile</span>
+                                </div>
+                                <label class="toggle-switch"><input type="checkbox" id="toggle-public"><span
+                                        class="toggle-slider"></span></label>
+                            </div>
+                            <div class="settings-toggle-item">
+                                <div>
+                                    <span class="settings-item-label">Show online status</span>
+                                    <span class="settings-toggle-desc">Let others see when you're active</span>
+                                </div>
+                                <label class="toggle-switch"><input type="checkbox" id="toggle-online" checked><span
+                                        class="toggle-slider"></span></label>
+                            </div>
+                            <div class="settings-toggle-item">
+                                <div>
+                                    <span class="settings-item-label">Show last seen</span>
+                                    <span class="settings-toggle-desc">Display your last activity time</span>
+                                </div>
+                                <label class="toggle-switch"><input type="checkbox" id="toggle-lastseen"><span
+                                        class="toggle-slider"></span></label>
+                            </div>
+                        </div>
+                        <div class="notif-group">
+                            <span class="notif-group-title">MESSAGING &amp; INTERACTION</span>
+                            <div class="settings-toggle-item">
+                                <div>
+                                    <span class="settings-item-label">Allow direct messages from matches</span>
+                                    <span class="settings-toggle-desc">Only mutual matches can message you</span>
+                                </div>
+                                <label class="toggle-switch"><input type="checkbox" id="toggle-dms" checked><span
+                                        class="toggle-slider"></span></label>
+                            </div>
+                            <div class="settings-toggle-item">
+                                <div>
+                                    <span class="settings-item-label">Block non-photo profiles</span>
+                                    <span class="settings-toggle-desc">Hide profiles without photos</span>
+                                </div>
+                                <label class="toggle-switch"><input type="checkbox" id="toggle-nophoto"><span
+                                        class="toggle-slider"></span></label>
+                            </div>
+                        </div>
+                        <div class="notif-group">
+                            <span class="notif-group-title">DATA &amp; ACCOUNT</span>
+                            <div class="settings-item"
+                                style="padding:14px 0;border-bottom:1px solid var(--dash-border);">
+                                <div class="settings-item-info">
+                                    <span class="settings-item-label">Download My Data</span>
+                                    <span style="font-size:0.72rem;color:var(--dash-text-muted);">Export your profile
+                                        and activity data</span>
+                                </div>
+                                <button class="settings-edit-btn">Download</button>
+                            </div>
+                            <div class="settings-item" style="padding:14px 0;border:none;">
+                                <div class="settings-item-info">
+                                    <span class="settings-item-label" style="color:#e57373;">Delete Account</span>
+                                    <span style="font-size:0.72rem;color:var(--dash-text-muted);">Permanently remove all
+                                        your data</span>
+                                </div>
+                                <button class="danger-btn-fill" id="btn-delete-account">Delete</button>
+                            </div>
+                        </div>
+                        <div class="settings-form-actions">
+                            <button class="sf-save-btn">Save Privacy Settings</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======= PREMIUM PAGE ======= -->
+        <section class="dash-page" id="page-premium">
+            <!-- Hero -->
+            <div class="prem-hero">
+                <div class="prem-hero-inner">
+                    <span class="prem-eyebrow">ELITE TIER READY</span>
+                    <h1 class="prem-hero-title">Unlock Your Perfect Match with<br><span
+                            class="prem-brand-gold">HumsafarPremium</span></h1>
+                    <p class="prem-hero-sub">Go beyond simple filters. Leverage our AI-assisted search refinement to
+                        find truly compatible based on values, lifestyle, and heritage.</p>
+                    <div class="prem-hero-ctas">
+                        <button class="prem-cta-primary"
+                            onclick="document.getElementById('pricing-section').scrollIntoView({behavior:'smooth'})">View
+                            Plans</button>
+                        <button class="prem-cta-outline" onclick="navigateTo('matches')">View Matches</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pricing Toggle -->
+            <div class="prem-section" id="pricing-section">
+                <div class="prem-toggle-row">
+                    <button class="prem-period-btn active" id="btn-monthly">Monthly</button>
+                    <button class="prem-period-btn" id="btn-yearly">Yearly (Save 30%)</button>
+                </div>
+
+                <!-- Pricing Tiers -->
+                <div class="prem-tiers">
+                    <!-- Free -->
+                    <div class="prem-tier">
+                        <div class="prem-tier-header">
+                            <span class="tier-name">Free</span>
+                            <div class="tier-price"><span class="tier-currency">₹</span><span
+                                    class="tier-amount">0</span></div>
+                            <span class="tier-period">Always Free</span>
+                        </div>
+                        <ul class="tier-features">
+                            <li class="feat-yes">5 Matches per Day</li>
+                            <li class="feat-yes">Basic Matching</li>
+                            <li class="feat-no">Chat with Matches</li>
+                            <li class="feat-no">See Who Viewed You</li>
+                            <li class="feat-no">Advanced Filters</li>
+                            <li class="feat-no">AI Recommendations</li>
+                        </ul>
+                        <button class="tier-btn tier-btn-outline">Current Plan</button>
+                    </div>
+
+                    <!-- Premium (Featured) -->
+                    <div class="prem-tier prem-tier-featured">
+                        <div class="tier-best-label">MOST POPULAR</div>
+                        <div class="prem-tier-header">
+                            <span class="tier-name">Premium</span>
+                            <div class="tier-price"><span class="tier-currency">₹</span><span class="tier-amount"
+                                    id="price-premium">699</span></div>
+                            <span class="tier-period">/month</span>
+                        </div>
+                        <ul class="tier-features">
+                            <li class="feat-yes">Unlimited Matches</li>
+                            <li class="feat-yes">Unlimited Messaging</li>
+                            <li class="feat-yes">Unlimited Qualifying Filters</li>
+                            <li class="feat-yes">1 Free Match per Month</li>
+                            <li class="feat-yes">See Who Likes You</li>
+                            <li class="feat-no">Elite Concierge</li>
+                        </ul>
+                        <button class="tier-btn tier-btn-primary">Upgrade Now</button>
+                    </div>
+
+                    <!-- Gold -->
+                    <div class="prem-tier prem-tier-gold">
+                        <div class="prem-tier-header">
+                            <span class="tier-name" style="color:var(--dash-gold);">Gold</span>
+                            <div class="tier-price"><span class="tier-currency">₹</span><span class="tier-amount"
+                                    id="price-gold">1,299</span></div>
+                            <span class="tier-period">/month</span>
+                        </div>
+                        <ul class="tier-features">
+                            <li class="feat-yes">Daily Elite Matches</li>
+                            <li class="feat-yes">Dedicated Relationship Manager</li>
+                            <li class="feat-yes">Full Background Verification</li>
+                            <li class="feat-yes">Priority Profile Boost</li>
+                            <li class="feat-yes">Elite Concierge Access</li>
+                            <li class="feat-yes">Yearly Match Guarantee</li>
+                        </ul>
+                        <button class="tier-btn tier-btn-gold">Get Gold &amp; Save</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Elite Concierge -->
+            <div class="prem-concierge-section">
+                <div class="concierge-content">
+                    <span class="prem-eyebrow" style="color:var(--dash-gold);">ELITE SERVICE</span>
+                    <h2 class="concierge-title">The Humsafar<br><em>Elite Concierge</em></h2>
+                    <p class="concierge-desc">A dedicated human relationship consultant works with you personally —
+                        understanding your life context, family values, and cultural expectations — to curate handpicked
+                        connections and guide every step of your journey.</p>
+                    <ul class="concierge-features">
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="16"
+                                height="16">
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                            <div>
+                                <strong>100% Profile Review</strong>
+                                <span>Your profile is professionally curated to maximize matches</span>
+                            </div>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="16"
+                                height="16">
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                            <div>
+                                <strong>Personal Matchmaker</strong>
+                                <span>A dedicated consultant learns your values and finds your match</span>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="concierge-pricing">
+                        <span class="concierge-price">₹25,000 – ₹90,070</span>
+                        <button class="concierge-enquire-btn">Request Invite</button>
+                    </div>
+                </div>
+                <div class="concierge-stat-box">
+                    <div class="concierge-stat-number">98%</div>
+                    <div class="concierge-stat-label">of Elite members find a<br>compatible match within 90 days</div>
+                </div>
+            </div>
+
+            <!-- One-Time Boosts + AI Coach -->
+            <div class="prem-section prem-boosts-row">
+                <div class="boosts-card">
+                    <h3 class="prem-section-title">One-Time Performance Boosts</h3>
+                    <div class="boosts-grid">
+                        <div class="boost-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="22"
+                                height="22">
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M12 8v4l3 3" />
+                            </svg>
+                            <strong>Spotlight</strong>
+                            <span>Be the top profile for 30 minutes</span>
+                            <span class="boost-price">₹99 / boost</span>
+                        </div>
+                        <div class="boost-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="22"
+                                height="22">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                            </svg>
+                            <strong>Deep Verification</strong>
+                            <span>Professionally verify your identity</span>
+                            <span class="boost-price">₹49 / once</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="ai-coach-card">
+                    <span class="ai-coach-eyebrow">AI-POWERED</span>
+                    <h3 class="ai-coach-title">AI Relationship Coach</h3>
+                    <p class="ai-coach-desc">Talk to our AI Coach at any time — it asks you the right questions to
+                        suggest conversation starters, flag compatibility concerns, and keep your matches advancing on
+                        track.</p>
+                    <p class="ai-coach-quote">"Our AI analyzes the top 0.1% of successful matches on Humsafar to advise
+                        on exactly the right next step."</p>
+                    <button class="ai-coach-btn">Enable Coach — ₹299/mo</button>
+                </div>
+            </div>
+
+            <!-- Feature Comparison Table -->
+            <div class="prem-section">
+                <h2 class="prem-section-title" style="text-align:center;margin-bottom:28px;">Compare All Features</h2>
+                <div class="compare-table-wrap">
+                    <table class="compare-table">
+                        <thead>
+                            <tr>
+                                <th>FEATURE</th>
+                                <th>Free</th>
+                                <th class="compare-th-premium">Premium</th>
+                                <th class="compare-th-gold">Gold</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Daily Matches</td>
+                                <td>5 Per Day</td>
+                                <td>25 Matches</td>
+                                <td>Unlimited</td>
+                            </tr>
+                            <tr>
+                                <td>Profile Compatibility Score Pro</td>
+                                <td>—</td>
+                                <td class="feat-check">✓</td>
+                                <td class="feat-check">✓</td>
+                            </tr>
+                            <tr>
+                                <td>Photo Uploads</td>
+                                <td>3</td>
+                                <td>Unlimited</td>
+                                <td>Unlimited</td>
+                            </tr>
+                            <tr>
+                                <td>Advanced Video Calling</td>
+                                <td class="feat-cross">✗</td>
+                                <td>Limited</td>
+                                <td>Priority (HD)</td>
+                            </tr>
+                            <tr>
+                                <td>Human Matchmaker Support</td>
+                                <td class="feat-cross">✗</td>
+                                <td class="feat-cross">✗</td>
+                                <td>Priority (24/7)</td>
+                            </tr>
+                            <tr>
+                                <td>Background Verification</td>
+                                <td class="feat-cross">✗</td>
+                                <td class="feat-cross">✗</td>
+                                <td class="feat-check">✓</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Trust Stats -->
+            <div class="prem-trust-row">
+                <div class="trust-stat">
+                    <span class="trust-num">95%</span>
+                    <span class="trust-label">Match Satisfaction</span>
+                </div>
+                <div class="trust-stat">
+                    <span class="trust-num">10k+</span>
+                    <span class="trust-label">Successful Marriages</span>
+                </div>
+                <div class="trust-stat">
+                    <span class="trust-num">256-bit</span>
+                    <span class="trust-label">Encryption Security</span>
+                </div>
+                <div class="trust-stat">
+                    <span class="trust-num">4.9/5</span>
+                    <span class="trust-label">Average App Rating</span>
+                </div>
+            </div>
+
+            <!-- Final CTA -->
+            <div class="prem-final-cta">
+                <h2 class="prem-final-title">Stop Searching.<br>Let AI Find Your <em>HumsaFar.</em></h2>
+                <button class="prem-final-btn"
+                    onclick="document.getElementById('pricing-section').scrollIntoView({behavior:'smooth'})">Get Started
+                    Today</button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Sidebar Overlay (mobile) -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <script src="/js/dashboard.js"></script>
+</body>
+
+</html>

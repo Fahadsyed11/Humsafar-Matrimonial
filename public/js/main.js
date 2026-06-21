@@ -41,10 +41,12 @@ async function checkAuthState() {
         const res = await fetch('/api/auth/me');
         if (res.ok) {
             const data = await res.json();
-            showLoggedInState(data.user);
+            // Redirect to dashboard — logged in users get the full experience
+            window.location.href = '/dashboard';
+            return;
         }
     } catch (err) {
-        // Not logged in, that's fine
+        // Not logged in, show home page
     }
 }
 
